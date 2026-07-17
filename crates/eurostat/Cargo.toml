@@ -1,0 +1,62 @@
+[package]
+name = "eurostat"
+description = "Rust library for Eurostat and Comext APIs"
+readme = "../../README.md"
+keywords = ["eurostat", "sdmx", "statistics", "comext"]
+categories = ["api-bindings", "science"]
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[features]
+default = ["cache", "export", "bulk", "mirror"]
+# SQLite catalogue cache (sqlx is slow to compile).
+cache = ["dep:sqlx"]
+# Arrow/Parquet export (arrow/parquet are the heaviest deps).
+export = ["dep:arrow", "dep:parquet"]
+# Bulk download progress bars and mirror pipeline.
+bulk = ["dep:indicatif"]
+# Mirror bulk sources into parquet.zstd datasets.
+mirror = ["bulk", "export"]
+# Stream mirror directly to S3-compatible object storage (Hetzner, etc.).
+s3 = ["mirror", "dep:rust-s3"]
+# Load S3 parquet into ClickHouse.
+clickhouse = ["s3", "export", "dep:clickhouse", "dep:chrono", "dep:bytes", "cache", "bulk"]
+fuzzy-search = ["dep:fuzzy-matcher"]
+polars-export = ["export", "dep:polars"]
+
+[dependencies]
+anyhow.workspace = true
+arrow = { workspace = true, optional = true }
+async-compression.workspace = true
+csv.workspace = true
+directories.workspace = true
+flate2.workspace = true
+futures.workspace = true
+fuzzy-matcher = { workspace = true, optional = true }
+indicatif = { workspace = true, optional = true }
+parquet = { workspace = true, optional = true }
+polars = { workspace = true, optional = true }
+quick-xml.workspace = true
+reqwest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sqlx = { workspace = true, optional = true }
+thiserror.workspace = true
+tokio.workspace = true
+tokio-util.workspace = true
+tracing.workspace = true
+url.workspace = true
+tempfile.workspace = true
+rust-s3 = { workspace = true, optional = true }
+clickhouse = { workspace = true, optional = true }
+chrono = { workspace = true, optional = true }
+bytes = { workspace = true, optional = true }
+
+[dev-dependencies]
+tokio = { workspace = true, features = ["test-util", "macros", "rt-multi-thread"] }
+wiremock.workspace = true
+tempfile = "3.14"

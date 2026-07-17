@@ -1,0 +1,655 @@
+Code list code	Code list label	Last update	Standard
+ACCIDENT	Accident	2024-10-10_23-00	Y
+ACCOMMOD	Mode of accommodation	2025-02-20_23-00	Y
+ACCOMSIZE	Size of accommodation by number of bedplaces	2022-05-05_23-00	Y
+ACCOMUNIT	Accommodation unit	2021-08-10_23-00	Y
+ACL00	Classification of activities for time use	2026-05-19_23-00	Y
+ACL18	Classification of activities for time use - 2018	2025-09-15_23-00	Y
+ACTPLACE	Place of activity	2026-06-18_23-00	Y
+ADMINISTR	Administration indicator	2025-12-16_23-00	Y
+AGE	Age class	2026-05-05_23-00	Y
+AGECHILD	Age of the child	2026-05-05_23-00	Y
+AGEDEF	Age definition	2024-01-11_23-00	Y
+AGPRDMET	Agricultural production methods	2025-07-08_23-00	Y
+AGRAREA	Agricultural area	2025-07-02_23-00	Y
+AGRIPROD	Agricultural products	2026-06-09_23-00	Y
+AGR_INP	Agricultural inputs	2026-03-11_23-00	Y
+AIRCRAFT	Aircraft	2024-02-13_23-00	Y
+AIRC_CAT	Aircraft category	2025-03-31_23-00	Y
+AIRLINE	Airlines	2024-02-13_23-00	Y
+AIRPOL	Air pollutants and greenhouse gases	2026-06-09_23-00	Y
+AIRP_PR	Airport pairs (routes)	2026-06-18_23-00	Y
+AIRSECT	Source sectors for air emissions	2024-01-11_23-00	O
+AMENITY	Amenities	2024-09-05_23-00	Y
+AM_ITEM	Agro-monetary items	2026-06-01_23-00	Y
+ANIMALS	Live animals	2026-06-09_23-00	Y
+ANISPEC	Animal species	2025-06-03_23-00	Y
+ANNEX	Annex	2024-01-11_23-00	O
+APPLICANT	Applicant type	2025-11-24_23-00	Y
+APPREHEN	Place of apprehension	2021-12-10_23-00	Y
+AQUAENV	Aquatic environment	2024-10-10_23-00	Y
+AQUAMETH	Aquaculture method	2025-12-16_23-00	Y
+ARA	Share of arable land	2026-02-04_23-00	Y
+ARABLE	Arable land area	2025-07-02_23-00	Y
+AREA	Area	2025-07-02_23-00	Y
+AREAPROT	Protected or protective area	2023-02-28_23-00	Y
+ARREARS	Arrears	2023-09-12_11-00	Y
+ASSESS	Assessment	2025-12-16_23-00	Y
+ASSET10	Assets (ESA 2010)	2025-01-20_23-00	N
+ASSIST	Assistance	2025-03-20_23-00	Y
+ASU	Antimicrobial sales and use classification	2025-06-03_23-00	Y
+BARK	Under bark / over bark	2025-12-16_23-00	Y
+BARRIER	Barriers	2024-02-13_23-00	Y
+BCLAS_BEC	Basic classes of goods in the System of National Accounts (SNA) in terms of Broad Economic Categories (BEC)	2024-02-13_23-00	Y
+BEC_R5	Broad economic categories (BEC Rev.5)	2025-03-26_23-00	Y
+BMI	Body Mass Index	2026-06-17_23-00	Y
+BODYPART	Part of body injured	2024-03-25_23-00	Y
+BONDS	Bonds	2019-04-09_23-00	Y
+BOP_ITEM	Balance of payments item	2026-06-10_23-00	Y
+BORDER	Border	2019-06-24_23-00	Y
+BSNPART	Business partner	2026-04-29_23-00	Y
+BSN_STRAT	Business strategy	2025-02-03_23-00	Y
+BUILDING	Type of building	2023-02-28_23-00	Y
+BUS_FUNC	Business function	2024-10-03_23-00	Y
+BUS_PART	Kind of business partners	2024-09-03_23-00	Y
+CALCMETH	Calculation method	2020-10-06_23-00	Y
+CALVAL	Calorific values	2025-11-19_23-00	Y
+CARERESP	Care responsibility	2019-08-29_23-00	Y
+CARESTAT	Care status	2025-10-08_23-00	Y
+CARGO	Type of cargo	2019-04-09_23-00	Y
+CATEGORY	Category	2024-03-26_23-00	Y
+CBTRADE	Cross border trade	2024-01-11_23-00	O
+CEPAREMA	Classifications of environmental activities: environmental protection activities (CEPA) and resource management activities (CReMA)	2023-02-23_23-00	Y
+CHANGE	Change	2026-07-06_23-00	Y
+CHCARE	Childcare services	2019-09-06_23-00	Y
+CITIES	Geopolitical entity (declaring)	2026-03-19_23-00	Y
+CITIZEN	Country of citizenship	2026-01-22_23-00	Y
+CLC18	Nomenclature of land cover and land use (Corine Land Cover 2018)	2026-05-19_23-00	Y
+CLSPEC	Client specialisation	2024-09-05_23-00	O
+CLTYPE	Client/Trader	2024-11-07_23-00	O
+COEF	Coefficients of the model for the euro yield curve	2020-10-19_23-00	Y
+COFOG99	Classification of the functions of government (COFOG 1999)	2018-08-20_23-00	Y
+COICOP	Classification of individual consumption by purpose (COICOP)	2024-10-03_23-00	Y
+COICOP18	Classification of individual consumption by purpose (COICOP) - 2018	2026-06-08_23-00	Y
+COMMUTE	Commuting	2018-02-22_23-00	Y
+COMSPEC	Bird species	2024-01-11_23-00	Y
+CONF_STATUS	Confidentiality status (flag)	2025-11-07_23-00	Y
+CONS	Abstraction and use sector or treatment type	2024-10-03_23-00	O
+CONSIGN	Type of consignment	2023-10-16_23-00	Y
+CONSOM	Consumption	2026-05-27_23-00	O
+CONS_EXPN	Share of consumption expenditure	2026-02-04_23-00	Y
+CONS_FP	Consumption footprint	2022-07-11_23-00	Y
+CONTRIB	Contributor	2026-05-26_23-00	Y
+COOP_PTN	Cooperation partners	2024-11-20_23-00	Y
+COPAT	Patenting and co-patenting	2025-12-16_23-00	Y
+COST	Costs	2017-12-20_23-00	Y
+COUNTERP	Type of counterpart	2024-11-20_23-00	Y
+CO_NCO	Consolidated/Non consolidated	2024-01-11_23-00	Y
+CPA02	Statistical Classification of Products by Activity in the European Economic Community, 2002	2023-02-28_23-00	Y
+CPA08	Statistical Classification of Products by Activity in the European Economic Community, 2008	2025-03-26_23-00	Y
+CPA2_1	Statistical Classification of Products by Activity (CPA 2.1)	2024-10-03_23-00	Y
+CPA2_2	Statistical Classification of Products by Activity (CPA 2.2)	2026-06-02_23-00	Y
+CPATC	Cooperative patent classification	2025-03-26_23-00	Y
+CPAYAGR	Collective pay agreement	2019-04-09_23-00	Y
+CREDINST	Credit institutions	2019-04-09_23-00	Y
+CROPAREA	Area under corresponding crop	2025-07-02_23-00	Y
+CROPS	Crops	2026-04-29_23-00	Y
+CROP_PRO	Crop production	2024-03-14_23-00	O
+CROP_ROT	Share of arable land with crop rotation	2026-02-04_23-00	Y
+CRUDEOIL	Crude oil type	2026-02-24_23-00	Y
+CTR_WTIME	Control over working time	2026-04-29_23-00	Y
+CURRENCY	Currency	2026-01-19_23-00	Y
+CUSTOMER	Customer	2023-12-11_23-00	Y
+CVTAGR	Agreement on CVT (continuing vocational training)	2025-12-16_23-00	Y
+CVTPLAN	Planning of CVT (continuing vocational training) in enterprises	2025-12-16_23-00	Y
+C_BIRTH	Country/region of birth	2026-03-25_23-00	Y
+C_BTHFAT	Country of birth of father	2026-03-25_23-00	Y
+C_BTHMOT	Country of birth of mother	2026-03-25_23-00	Y
+C_BTHPAR	Country of birth of parents	2026-03-25_23-00	Y
+C_CABOT	Country of cabotage	2026-03-25_23-00	Y
+C_CTRL	Country, in which the controlling enterprise is located	2026-03-25_23-00	Y
+C_DEST	Country of destination	2026-03-25_23-00	Y
+C_EDUC	Country of education	2026-03-25_23-00	Y
+C_EXP	Country of export	2026-01-22_23-00	Y
+C_IMP	Country of import	2026-01-22_23-00	Y
+C_LOAD	Country/region of loading/embarking	2026-03-25_23-00	Y
+C_ORIG	Country of origin	2026-03-25_23-00	Y
+C_REGIS	Country of registration	2026-03-25_23-00	Y
+C_RESID	Country of residence	2026-03-25_23-00	Y
+C_TRANS	Country of transit	2026-03-25_23-00	Y
+C_UNLOAD	Country/region of unloading/disembarking	2026-03-25_23-00	Y
+C_WORK	Country/region of work	2026-03-25_23-00	Y
+DAIRYPROD	Dairy and other animal products (except meat)	2026-04-27_23-00	Y
+DANG_GDS	Dangerous goods	2023-02-28_23-00	Y
+DAYSWEEK	Days of the week	2025-04-14_23-00	Y
+DECISION	Decision	2024-10-07_23-00	Y
+DEG_URB	Degree of urbanisation	2020-10-20_23-00	Y
+DENSITY	Plantation density	2025-06-30_23-00	Y
+DEST	Destination	2023-03-20_23-00	Y
+DEST_USE	Fish destination and use	2019-04-09_23-00	Y
+DEVIATN	Deviation	2025-06-10_23-00	Y
+DIAGNOSE	Diagnosis	2025-12-08_23-00	Y
+DIRECT	Direction of flow	2026-06-25_23-00	Y
+DISTANCE	Distance	2021-08-11_23-00	Y
+DOMAIN	Administrative domain	2025-07-09_23-00	Y
+DURATION	Duration	2026-05-05_23-00	Y
+EBOPS2010	Extended Balance of Payments Services Classification 2010 (EBOPS 2010)	2026-06-10_23-00	Y
+ECASE	Earnings case	2026-02-02_23-00	Y
+ECOCON	Ecosystem condition	2026-03-25_23-00	Y
+ECOICOP2	European classification of individual consumption according to purpose (ECOICOP) version 2	2026-02-25_23-00	Y
+ECOSERV	Ecosystem services	2026-02-17_23-00	Y
+ECOSYST	Ecosystem typology	2026-06-01_23-00	Y
+ECOSYST_C	Ecosystem typology - converted	2026-06-01_23-00	Y
+EFA	Ecological focus area	2025-07-09_23-00	Y
+EFFECT	Effects	2025-10-02_23-00	Y
+EFFEMP	Effects on employment	2024-12-10_23-00	Y
+EINV	Share of e-invoices	2026-03-26_23-00	Y
+EMPSOUGH	Type of employment sought	2024-03-26_23-00	N
+EMP_CONT	Type of employment contract	2020-04-21_23-00	Y
+ENGINE	Engine capacity of vehicle	2025-12-16_23-00	Y
+ENG_POW	Engine power	2024-07-16_23-00	Y
+ENTERPR	Enterprise	2024-11-14_23-00	Y
+ENTGRP	Enterprise group identification	2025-03-26_23-00	Y
+ENTITY	Entity	2026-03-12_23-00	Y
+ENV_BEN	Environmental benefit	2026-04-28_23-00	Y
+ENV_ECON	Environmental economic characteristics	2025-03-10_23-00	Y
+ENV_EXP	Environmental expenditure	2024-03-14_23-00	O
+ENV_PA	Environmental purposes and actions	2025-03-27_23-00	Y
+ESEG	European Socio-economic groups	2024-10-07_23-00	Y
+ESTD_EMIS	European emission standards	2026-06-09_23-00	Y
+ESTRUCT	Earnings structure	2025-12-16_23-00	Y
+ESU	Economic size classes of holdings in European Size Unit (ESU)	2023-02-28_23-00	Y
+EXCH_RT	Exchange rate	2025-12-23_23-00	Y
+EXPEND	Expenditure and investment	2026-02-19_23-00	Y
+EXPERNCE	Experience	2017-03-07_23-00	Y
+FACILITY	Health facility	2025-02-17_23-00	Y
+FACTOR	Factors	2026-02-05_23-00	Y
+FAM_FARM	Share of family farming labour force	2026-02-04_23-00	Y
+FARMSIZE	Size of farm	2020-05-12_23-00	Y
+FARMTYPE	Farm type	2025-07-07_23-00	Y
+FDI_ITEM	Foreign direct investment item	2026-03-17_23-00	Y
+FIELD	Education or training field	2024-11-05_23-00	Y
+FINPOS	Financial position	2024-11-18_23-00	Y
+FIN_SOURCE	Financial source	2024-08-07_23-00	O
+FIN_TYP	Finance type	2024-11-18_23-00	Y
+FISHREG	Fishing regions	2024-03-27_23-00	N
+FODDER	Share of fodder area in utilised agricultural area	2026-02-04_23-00	Y
+FORD	Fields of research and development classification	2024-10-07_23-00	Y
+FOR_ACC	Forestry economic accounts	2026-06-24_23-00	Y
+FREQ	Time frequency	2025-11-07_23-00	Y
+FREQUENC	Frequency	2024-01-17_23-00	Y
+FRQ_WOTH	Frequency of working at other locations	2024-01-17_23-00	Y
+FRQ_WTPR	Frequency of working under time pressure	2024-01-17_23-00	Y
+FRUITVAR	Fruit species and groups of varieties	2019-05-10_23-00	Y
+FUND	Type of funding	2020-09-09_23-00	Y
+GAUGERT	Rail track gauge	2023-10-16_23-00	Y
+GD_SERV	Type of goods and services	2023-12-18_23-00	Y
+GEAR	Fishing gears	2023-02-28_23-00	Y
+GEN_TECH	Generation technologies	2021-02-15_23-00	Y
+GEO	Geopolitical entity (reporting)	2026-03-25_23-00	Y
+GUARANTORS	Guarantors in obtaining loan finance	2024-03-14_23-00	O
+HATCHITM	Activity of hatcheries	2024-10-07_23-00	Y
+HAZARD	Hazard class	2025-11-20_23-00	Y
+HHCARACT	Household characteristics	2023-08-03_23-00	Y
+HHCOMP	Household composition	2026-05-07_23-00	Y
+HHSTATUS	Family/household status	2026-05-11_23-00	Y
+HHTYP	Type of household	2026-06-11_23-00	N
+HHTYPE	Type of household	2023-08-01_23-00	Y
+HHWKSTAT	Working status of adults within private households	2026-04-29_23-00	Y
+HIRE_PLAN	Hiring plan	2026-04-29_23-00	Y
+HLTHCARE	Health care	2024-05-15_23-00	Y
+HLTH_HLE	Health and life expectancy	2020-10-29_23-00	Y
+HLTH_PB	Health problems	2025-12-08_23-00	Y
+HOLD_MAN	Legal form and holder-manager relationship	2024-03-26_23-00	N
+HOSPCARE	Hospital care	2025-02-17_23-00	Y
+HOTELSIZE	Size of tourism establishments by number of rooms	2023-08-31_23-00	Y
+HOUSING	Housing	2023-11-21_23-00	Y
+HOUS_ANI	Animal housing	2025-09-08_23-00	Y
+HP_CAUSE	Cause of health problem or disability	2025-12-16_23-00	Y
+HP_TECH	Heat pumps technologies	2024-03-26_23-00	Y
+HS22	Harmonised System nomenclature (HS2022)	2025-06-17_23-00	Y
+ICCS	International classification of crime for statistical purposes (ICCS)	2025-07-17_11-00	Y
+ICD10	International Statistical Classification of Diseases and Related Health Problems (ICD-10)	2025-09-29_11-00	Y
+ICD9CM	International Classification of Diseases (Medical procedures)	2019-05-08_23-00	Y
+ICHA11_FS	Classification of revenues of health care financing schemes - SHA 2011	2020-08-19_23-00	Y
+ICHA11_HC	Classification of health care functions - SHA 2011	2026-02-18_23-00	Y
+ICHA11_HF	Classification of health care financing schemes - SHA 2011	2017-07-05_23-00	Y
+ICHA11_HP	Classification of health care providers - SHA 2011	2025-12-16_23-00	Y
+ICHA_HC	Health care functions SHA	2023-02-28_23-00	Y
+ICHA_HP	Health care providers SHA	2024-10-07_23-00	Y
+ICT	Information and communication technologies (ICT)	2025-03-31_23-00	Y
+INCOME	Share of income	2026-06-29_23-00	Y
+INCSRC	Main source of income	2025-11-03_23-00	Y
+INCUBAT	Type of incubation	2026-02-25_23-00	Y
+INDIC	Indicator	2026-02-03_23-00	N
+INDIC_AG	Agricultural indicator	2024-10-08_23-00	N
+INDIC_AGR	Agricultural indicators	2026-06-24_23-00	Y
+INDIC_BP	Balance of payments indicator	2024-10-08_23-00	N
+INDIC_BT	Business trend indicator	2024-07-04_23-00	Y
+INDIC_CR	Indicators on crime and criminal justice	2024-03-26_23-00	N
+INDIC_DE	Demographic indicator	2025-11-06_23-00	N
+INDIC_ED	Education indicator	2025-12-08_23-00	N
+INDIC_EF	Eurofarm indicators	2024-03-27_23-00	N
+INDIC_EM	Employment indicator	2026-07-01_23-00	Y
+INDIC_EN	Energy indicator	2025-07-03_23-00	O
+INDIC_ENV	Environment indicator	2024-10-02_23-00	Y
+INDIC_ET	External trade indicator	2025-03-17_23-00	N
+INDIC_EWB	Economic well-being indicator	2026-04-15_23-00	Y
+INDIC_FB	Indicator on factors of business success	2024-10-09_23-00	O
+INDIC_FO	Forestry indicators	2023-02-28_23-00	Y
+INDIC_HE	Health indicator	2026-06-29_23-00	N
+INDIC_IL	Income and living conditions indicator	2026-06-11_23-00	N
+INDIC_IN	Innovation indicator	2024-03-14_23-00	O
+INDIC_INN	Innovation indicator	2026-04-28_23-00	Y
+INDIC_IP	Macroeconomic imbalance procedure indicators	2025-01-10_23-00	N
+INDIC_IS	Information society indicator	2026-03-10_23-00	N
+INDIC_LC	Labour cost indicators	2020-03-10_23-00	Y
+INDIC_MD	Indicator used in Euro_Med	2024-11-05_23-00	O
+INDIC_MG	Indicator on migration	2024-02-01_23-00	Y
+INDIC_NRG	Energy indicator	2026-01-28_23-00	N
+INDIC_NRGM	Energy market indicator	2021-05-17_23-00	Y
+INDIC_PEFA	Physical energy flow accounts indicators	2021-06-14_23-00	Y
+INDIC_PPP	Purchasing power parities indicator	2026-02-26_23-00	Y
+INDIC_SB	Economical indicator for structural business statistics	2024-11-05_23-00	O
+INDIC_SBS	Economic indicator for structural business statistics	2025-12-22_23-00	Y
+INDIC_SE	Structure of earnings indicator	2024-02-13_23-00	Y
+INDIC_SP	Social protection indicators	2024-08-26_23-00	Y
+INDIC_TO	Tourism indicator	2026-07-06_23-00	Y
+INDIC_UR	Urban audit indicator	2026-06-03_23-00	N
+INDIC_VI	Survey on variables under vines	2024-03-14_23-00	O
+INDX	Index	2018-08-24_23-00	Y
+IND_ACCT	Industries and accounting items	2025-07-21_23-00	Y
+IND_AVA	Industries, adjustments and value added	2025-07-21_23-00	Y
+IND_FARM	Main agricultural indicators	2024-03-26_23-00	N
+IND_IMPV	Industries, imports and valuations	2025-07-21_23-00	Y
+IND_INPU	Item of the input index	2024-03-14_23-00	O
+IND_OUTP	Item of the output index	2024-12-03_23-00	O
+IND_TYPE	Individual type	2026-07-01_23-00	N
+IND_USE	Industries and final uses	2025-07-21_23-00	Y
+INET_SPD	Internet speed	2024-07-31_23-00	Y
+INET_TEC	Internet technologies	2025-02-06_23-00	Y
+INJURY	Type of injury	2024-10-09_23-00	Y
+INNOVAT	Type of innovation	2020-12-08_23-00	Y
+INN_ACT	Innovation activities	2023-02-28_23-00	Y
+INN_DEVR	Innovation developer	2020-11-26_23-00	Y
+INN_PF	Innovation profile	2024-11-14_23-00	Y
+INT_RT	Interest rate	2024-02-13_23-00	Y
+INVOLVE	Involvement	2025-12-16_23-00	Y
+IPC	International patent classification (IPC)	2025-03-25_23-00	Y
+IPR_TRN	Transaction and type of Intellectual Property Rights (IPRs)	2019-01-29_23-00	Y
+IRRIG	Irrigated area	2025-07-02_23-00	Y
+IRRMETH	Irrigation methods	2025-07-07_23-00	Y
+IRR_AREA	Irrigation of agricultural area	2026-04-27_23-00	Y
+ISCED11	International Standard Classification of Education (ISCED 2011)	2026-05-07_23-00	Y
+ISCED11EA	International Standard Classification of Education (ISCED 2011) - (for formal education or training abandoned)	2026-05-07_23-00	Y
+ISCED11F	International Standard Classification of Education (ISCED 2011) - (for family members)	2026-05-07_23-00	Y
+ISCED97	International Standard Classification of Education (ISCED 1997)	2023-02-28_23-00	Y
+ISCEDF13	ISCED Fields of education and training (ISCED-F 2013)	2024-10-28_23-00	Y
+ISCO08	International Standard Classification of Occupations 2008 (ISCO-08)	2023-12-06_23-00	Y
+ISCO88	International Standard Classification of Occupations for European Union purposes (ISCO-88 (COM))	2025-12-16_23-00	Y
+ISSUER	Type of issuer	2024-05-02_23-00	Y
+ITM_NEWA	List of products - EAA	2026-06-18_23-00	N
+IWW_HD	Categories of navigable inland waterways by horizontal dimensions of vessels and pushed convoys	2025-12-16_23-00	Y
+JOB_AUTN	Job autonomy	2023-06-14_23-00	Y
+JOB_CL	Job creation, losses and mobility	2025-10-27_23-00	Y
+LA	Land use category (km²)	2024-03-14_23-00	O
+LANDCOVER	Land cover	2023-07-05_23-00	Y
+LANDUSE	Land use	2025-06-03_23-00	Y
+LANGUAGE	Language	2025-12-16_23-00	Y
+LCSTRUCT	Labour costs structure	2026-03-02_23-00	Y
+LEAVE	Type of leave	2019-08-26_23-00	Y
+LEGTYPE	Legal type of the holding	2024-03-26_23-00	N
+LEG_CASE	Legal case	2024-02-07_23-00	Y
+LEG_FORM	Legal form	2019-10-10_23-00	Y
+LEG_FRAM	Legal framework	2025-11-19_23-00	Y
+LEG_PROV	Legal provision	2025-11-24_23-00	Y
+LEG_STAT	Legal status	2019-05-08_23-00	Y
+LENGTH	Length	2021-08-11_23-00	Y
+LEVELS	Level	2026-05-12_23-00	Y
+LEV_BUR	Level of burden	2026-03-26_23-00	Y
+LEV_CMN	Level of commonness	2026-03-26_23-00	Y
+LEV_DEPR	Level of deprivation	2026-03-26_23-00	Y
+LEV_DIFF	Level of difficulty	2026-03-26_23-00	Y
+LEV_DIFFC	Level of difficulty in childhood	2026-05-07_23-00	Y
+LEV_DII	Level of digital intensity index	2026-03-26_23-00	Y
+LEV_EFCY	Level of efficiency	2026-03-26_23-00	Y
+LEV_EXPC	Level of expectation	2026-03-26_23-00	Y
+LEV_EXPN	Level of expenditure	2026-03-26_23-00	Y
+LEV_FINS	Level of financial situation	2026-03-26_23-00	Y
+LEV_IMPC	Level of impact	2026-05-12_23-00	Y
+LEV_IMPT	Level of importance	2026-03-26_23-00	Y
+LEV_INTRF	Level of interference	2026-03-26_23-00	Y
+LEV_KNOW	Level of knowledge	2026-03-26_23-00	Y
+LEV_LIMIT	Level of activity limitation	2026-03-26_23-00	Y
+LEV_MATCH	Level of job matching	2026-03-26_23-00	Y
+LEV_PERC	Level of perception	2026-03-26_23-00	Y
+LEV_RPT	Level of repetitiveness	2026-03-26_23-00	Y
+LEV_SATIS	Level of satisfaction	2026-03-26_23-00	Y
+LIFE_SAT	Life satisfaction	2024-04-15_23-00	Y
+LIFE_SIT	Life situation	2025-07-10_23-00	Y
+LOADSTAT	Loading status	2025-12-16_23-00	Y
+LOCPART	Location of partner	2026-03-26_23-00	Y
+LOC_CUS	Location of customer	2026-03-26_23-00	Y
+LSU	Size classes of total livestock units (LSU)	2024-11-18_23-00	Y
+LVLCROS	Type of level crossing	2024-01-10_23-00	Y
+L_SERV	Length of service	2026-05-05_23-00	Y
+MANSTO	Manure storage and application	2025-07-07_23-00	Y
+MARSTA	Marital status	2022-06-27_23-00	Y
+MARSTA2	Marital status (of bride)	2022-06-27_23-00	Y
+MATAGENT	Material agent	2024-08-06_23-00	N
+MATCH_QJ	Match between qualifications and job requirements	2025-09-11_23-00	Y
+MATERIAL	Materials	2024-10-28_23-00	Y
+MATURITY	Maturity	2025-11-13_23-00	Y
+MEAT	Meat product	2026-04-27_23-00	Y
+MEATITEM	Item of meat	2025-04-09_23-00	Y
+MEDIA	Media	2025-12-16_23-00	Y
+MED_SPEC	Medical speciality	2023-05-25_23-00	Y
+METROREG	Metropolitan regions (historical)	2026-06-16_23-00	Y
+METRO_REG	Metropolitan regions	2026-06-16_23-00	Y
+MGSTATUS	Migration status	2023-06-21_23-00	Y
+MILKITEM	Item of milk	2025-09-09_23-00	Y
+MKTPLACE	Market place	2025-08-19_23-00	Y
+MNTSTAT	Maintenance status	2026-02-02_23-00	Y
+MOBILITY	Mobility	2018-02-26_23-00	Y
+MOBSCHEME	Mobility scheme	2017-11-07_23-00	Y
+MODINJ	Contact - mode of injury	2024-10-28_23-00	Y
+MONTH	Month	2025-04-16_23-00	Y
+MORTALIT	Type of mortality	2026-01-13_23-00	Y
+MOT_NRG	Motor energy	2026-06-03_23-00	Y
+NABS07	Nomenclature for the analysis and comparison of scientific programmes and budgets (NABS 2007)	2024-10-28_23-00	Y
+NABS92	Nomenclature for the analysis and comparison of scientific programmes and budgets (NABS 1992)	2024-10-28_23-00	Y
+NACE_R1	Statistical classification of economic activities in the European Community (NACE Rev. 1.1)	2024-10-28_23-00	Y
+NACE_R2	Statistical classification of economic activities in the European Community (NACE Rev. 2)	2026-04-16_23-00	Y
+NACE_R2D	Statistical classification of economic activities in the European Community (NACE Rev. 2) (for industry of destination)	2026-03-25_23-00	Y
+NACE_R2_1	Statistical classification of economic activities in the European Community (NACE Rev. 2.1)	2026-06-16_23-00	Y
+NATVESSR	Nationality of registration of vessel	2025-12-23_23-00	Y
+NA_ITEM	National accounts indicator (ESA 2010)	2026-06-03_23-00	N
+NETWORK	Type of network	2023-03-20_23-00	Y
+NET_SEG	Rail network segment (2005)	2024-03-07_23-00	Y
+NET_SEG10	Rail network segment (2010)	2024-03-07_23-00	Y
+NET_SEG15	Rail network Segment (2015)	2024-03-07_23-00	Y
+NET_SEG20	Rail network segment (2020)	2024-03-07_23-00	Y
+NRG_BAL	Energy balance	2025-11-13_23-00	Y
+NRG_CONS	Energy consumption	2026-02-17_23-00	Y
+NRG_FLOW	Energy flows	2018-03-10_23-00	Y
+NRG_PRC	Components of energy prices	2022-06-16_23-00	Y
+NRG_SRC	Energy source	2024-07-18_23-00	Y
+NRG_TECH	Energy technologies	2023-07-31_23-00	Y
+NST07	Standard goods classification for transport statistics (NST 2007, 20 group)	2026-04-21_23-00	Y
+NSTR24	NST/R24 groups	2024-03-26_23-00	N
+NSTR_GG	Groups of goods based on NST/R chapters	2023-06-21_23-00	Y
+NUTRIENT	Nutrient	2026-06-24_23-00	Y
+N_ACTION	Number of training actions	2025-12-16_23-00	Y
+N_ACTIV	Number of active persons	2017-07-19_23-00	Y
+N_BOOK	Number of books	2025-12-16_23-00	Y
+N_CHILD	Number of children	2025-12-02_23-00	Y
+N_CLIENT	Number of clients	2023-06-21_23-00	Y
+N_CONTACT	Number of contacts	2017-06-26_23-00	Y
+N_CROP	Number of crops	2025-07-07_23-00	Y
+N_HEAD	Number of heads	2024-04-25_23-00	Y
+N_HPROB	Number of health problems	2025-12-16_23-00	Y
+N_INJURY	Number of accidental injuries	2025-12-16_23-00	Y
+N_ITEM	Number of items	2024-06-19_23-00	Y
+N_JOB	Number of jobs	2018-11-15_23-00	Y
+N_LANG	Number of foreign languages	2025-12-16_23-00	Y
+N_PARTNER	Number of partners	2025-12-16_23-00	Y
+N_PERSON	Number of persons	2023-08-31_23-00	Y
+N_PORTION	Number of portions	2025-12-16_23-00	Y
+N_ROOM	Number of rooms	2023-08-31_23-00	Y
+N_TRACKS	Number of tracks	2025-12-16_23-00	Y
+N_UNEMP	Number of unemployed persons	2025-12-16_23-00	Y
+N_VEHICL	Number of vehicles	2025-12-16_23-00	Y
+N_VESSEL	Number of vessels	2025-12-16_23-00	Y
+OBS_FLAG	Observation status (Flag) V2 structure	2025-11-07_23-00	Y
+OBS_STATUS	Observation status (Flag) V2 structure	2025-11-07_23-00	Y
+OBZONE	Objective zones (CAP)	2025-12-16_23-00	Y
+OCCUR	Occurence	2022-10-05_23-00	Y
+OFFER	Type of offer	2026-05-05_23-00	Y
+OGA_FAM	Other gainful activity of the family members	2020-02-04_23-00	Y
+OGA_HLD	Other gainful activity of the holder	2020-02-04_23-00	Y
+OGA_NRH	Other gainful activity of the holder (not related to the agricultural holding)	2020-02-04_23-00	Y
+OGA_RH	Other gainful activity of the holder (related to the agricultural holding)	2020-02-04_23-00	Y
+OGA_SPOU	Other gainful activity of the spouse	2020-02-04_23-00	Y
+OGA_TYPE	Types of other gainful activity (OGA) related to the agricultural holding	2024-10-28_23-00	Y
+OPERATOR	Operator/Trader	2023-08-08_23-00	Y
+ORD_BRTH	Birth order	2025-12-16_23-00	Y
+ORGANIC	Organic farming	2023-12-18_23-00	Y
+ORG_INST	National and international organizations and institutions	2025-05-14_23-00	Y
+ORIGIN	Place of origin	2025-05-21_23-00	Y
+OWNER	Type of ownership	2025-08-26_23-00	Y
+PARITY	Number of children previously born to a woman	2025-12-17_11-00	Y
+PARTICIP	Participation	2026-02-12_23-00	Y
+PARTNER	Geopolitical entity (partner)	2026-03-25_23-00	Y
+PAR_MAR	Maritime entity (partner)	2023-12-13_23-00	Y
+PAS_CAP	Passenger capacity classes	2026-04-29_23-00	Y
+PEDS	Potential Environmentally Damaging Subsidies (ESA transfers)	2023-01-30_23-00	Y
+PENSCHEME	Pension scheme	2024-10-28_23-00	Y
+PERCENT	Size classes in percentage	2026-06-29_23-00	Y
+PERP	Type of perpetrator	2024-12-12_23-00	Y
+PERS_CAT	Category of persons	2025-04-16_23-00	Y
+PERS_SERV	Person/support service	2023-11-13_23-00	Y
+PESTICID	Plant protection product categories - pesticides	2026-04-23_11-00	Y
+PHHCOMP	Composition of private household	2026-04-30_23-00	Y
+PHYSACT	Specific physical activity	2026-06-16_23-00	Y
+PLANTS	Type of plant	2024-10-28_23-00	Y
+PLANT_TEC	Technical characteristics of plants	2024-03-20_23-00	Y
+PLPP_USE	Plant protection products use	2026-02-12_23-00	Y
+PL_CAPA	Plant capacity	2024-03-14_23-00	O
+PORT_INFR	Port infrastructure	2024-03-14_23-00	O
+PORT_IWW	Ports used for inland waterways transport	2026-01-22_23-00	Y
+POST	Item of the balance of payments	2024-08-06_23-00	O
+POWER	Type of current	2026-06-03_23-00	Y
+POW_ASY	Power asymmetry	2022-06-07_23-00	Y
+PPP_CAT	Analytical categories for purchasing power parities (PPPs) calculation	2024-10-28_23-00	Y
+PPP_CAT18	Analytical categories for purchasing power parities (PPPs) calculation (based on COICOP18)	2025-12-08_23-00	Y
+PRC_SET	Price setting	2024-02-27_23-00	Y
+PRD_ACCT	Products and accounting items	2026-03-12_23-00	Y
+PRD_AMO	Products, adjustments and market output	2026-02-04_23-00	Y
+PRD_AVA	Products, adjustments and value added	2026-03-12_23-00	Y
+PRD_USE	Products and final uses	2026-03-12_23-00	Y
+PRES	Presentation form	2025-12-16_23-00	Y
+PRIORITY	Priority of data collection	2024-03-14_23-00	O
+PROCSTAT	Process status	2025-12-16_23-00	Y
+PRODGRP	Product group	2026-04-27_23-00	Y
+PRODMILK	Milk product	2024-08-06_23-00	N
+PRODTYP	Production	2024-03-14_23-00	O
+PRODUCT	Products	2026-02-09_23-00	N
+PROD_ANI	Animal products	2024-08-06_23-00	N
+PROD_APR	Agricultural product (old codes)	2024-03-14_23-00	O
+PROD_CT	Cultural products	2019-05-08_23-00	Y
+PROD_INP	Input product	2024-10-28_23-00	N
+PROD_NRG	Energy product (physical energy flow accounts)	2025-10-07_23-00	Y
+PROD_SP	Sport products	2025-12-16_23-00	Y
+PROD_VEG	Vegetable product	2024-08-06_23-00	N
+PROD_WD	Wood products	2023-03-13_23-00	Y
+PROF_POS	Professional position	2025-04-15_23-00	Y
+PROJECTION	Type of projection	2026-02-10_23-00	Y
+PROVISION	Type of provision	2024-10-10_23-00	Y
+PRY	Type of productivity	2024-07-16_23-00	Y
+PURCHASE	Purchases	2023-09-21_23-00	Y
+PURPOSE	Purpose	2026-03-25_23-00	Y
+P_ADJ	Price adjustment	2019-05-08_23-00	Y
+QUANTILE	Quantile	2025-11-03_23-00	Y
+QUANT_EXPN	Expenditure quantile	2026-05-07_23-00	Y
+QUANT_INC	Income quantile	2026-05-07_23-00	Y
+QUANT_WLTH	Wealth quantile	2026-05-07_23-00	Y
+RAIL_ACT	Railway activities	2020-10-12_23-00	Y
+RANKING	Ranking	2025-12-16_23-00	Y
+RAWMAT	Raw materials	2023-05-12_11-00	Y
+RAWMATPR	Primary raw materials	2023-05-12_11-00	Y
+RAWMATSEC	Secondary raw materials	2023-05-12_11-00	Y
+RBD	River basin districts (RBD) and sub-units (SU)	2025-10-16_23-00	Y
+REACTION	Reaction	2025-12-16_23-00	Y
+REASON	Reason	2026-07-02_23-00	Y
+REASRET	Reason for retirement	2024-03-14_23-00	O
+RECIP_CO	Type of contribution recipient	2020-09-09_23-00	Y
+RECORD	Recording	2020-04-08_23-00	Y
+REGISVEH	Category of vehicle registration and traffic	2023-10-18_23-00	Y
+REGIS_ES	Registration with employment services	2021-05-10_23-00	Y
+RELEASE	Release	2023-09-22_11-00	Y
+REP_AIRP	Reporting airport	2026-06-18_23-00	Y
+REP_MAR	Maritime entity (reporting)	2025-11-03_23-00	Y
+REQUEST	Requests	2019-06-27_23-00	Y
+RESID	Place of residence	2024-02-22_23-00	Y
+RETURN	Type of return	2023-06-08_23-00	Y
+REVDATE	Revision date	2026-02-19_23-00	Y
+RISK	Risk type	2026-05-18_23-00	Y
+RND_ACT	R&D activities	2020-09-10_23-00	Y
+RSKPOVTH	Risk of poverty threshold	2026-05-07_23-00	Y
+RURALDEV	Rural development	2024-07-03_23-00	Y
+SCHEDULE	Type of schedule	2022-12-21_23-00	Y
+SEABASIN	Sea basins	2025-04-07_23-00	Y
+SEASHIP	Type of sea shipping	2022-12-08_23-00	Y
+SEAT	Type of seat/berth	2023-10-16_23-00	Y
+SECTFUND	Source of funds	2025-01-13_23-00	Y
+SECTOR	Sector	2026-02-19_23-00	Y
+SECTOR10	Sector (ESA 2010)	2025-11-07_23-00	Y
+SECTOR2	Counterpart sector	2026-02-19_23-00	Y
+SECTPART	Counterpart sector (ESA 2010)	2025-11-07_23-00	Y
+SECTPERF	Sector of performance	2023-06-13_23-00	Y
+SEVERITY	Severity (days lost)	2026-05-05_23-00	Y
+SEX	Sex	2023-08-09_23-00	Y
+SIEC	Standard international energy product classification (SIEC)	2025-03-10_23-00	Y
+SIGNAL	Signalling	2026-02-09_11-00	Y
+SITC06	Standard International Trade Classification (SITC Rev. 4, 2006)	2025-12-16_23-00	Y
+SIZECLAS	Size classes in number of employees	2023-09-25_11-00	Y
+SIZEHATCH	Capacity of the hatchery in number of eggs	2025-12-16_23-00	Y
+SIZES	Size	2020-05-12_23-00	Y
+SIZE_EMP	Size classes in number of persons employed	2025-08-19_23-00	Y
+SIZE_EXPN	Size classes of expenditure	2024-09-05_23-00	Y
+SIZE_MBR	Size classes in number of members	2025-12-16_23-00	Y
+SIZE_TUR	Size classes of turnover	2025-08-19_23-00	Y
+SKILLS	Skills and competences	2025-02-06_23-00	Y
+SLCH_AGR	Sales channels for agricultural products	2026-02-19_23-00	Y
+SMOKING	Smoking behaviour	2021-04-20_23-00	Y
+SNGLHLDR	Legal form: Single holder: Y/N	2024-03-14_23-00	O
+SNR_CAT	Seniority category	2023-10-02_11-00	Y
+SOC_INS	Social insurance coverage	2024-02-27_23-00	Y
+SOIL_COV	Soil cover of arable land	2026-04-27_23-00	Y
+SOURCE	Data source	2023-08-09_23-00	Y
+SO_EUR	Standard output in Euros	2025-04-28_23-00	Y
+SPDEP	Detailed benefit expenditure type	2024-08-26_23-00	Y
+SPDEPB	Pension type	2024-10-10_23-00	Y
+SPDEPM	Means testing	2024-08-19_23-00	Y
+SPDEPS	Main expenditure type	2024-08-26_23-00	Y
+SPECIES	Fish species	2025-10-27_23-00	N
+SPFUNC	Social protection function	2024-08-26_23-00	Y
+SPSCHEME	Category of schemes	2025-10-13_11-00	Y
+SPTYPE	Receipt type	2024-08-26_23-00	Y
+SRC	Hydrological parameters - flows - sources - water supply - treatment of water	2024-08-06_23-00	O
+SRC_ACT	Sourcing activity	2024-10-29_23-00	Y
+SRC_CRF	Source sectors for greenhouse gas emissions (Common reporting format, UNFCCC)	2025-03-20_23-00	Y
+SRC_FUND	Source of funding	2026-04-28_23-00	Y
+SRC_INFO	Source of information	2023-08-23_23-00	Y
+SRC_LEARN	Source of learning	2023-09-28_23-00	Y
+SRC_NFR	Source sectors for emissions of air pollutants (Nomenclature for reporting, CLRTAP)	2024-10-29_23-00	Y
+STARTIME	Starting time of the activity	2025-12-16_23-00	Y
+STATINFO	Statistical information	2026-05-11_23-00	Y
+STK_FLOW	Stock or flow	2026-07-01_11-00	Y
+STRUCPRO	Structure of production	2026-06-29_11-00	Y
+STUDENTC	Student category	2025-12-16_23-00	Y
+SUBJ_REGL	Subject of the regulation/legislation	2025-07-09_23-00	Y
+SUBSTANCE	Substances	2023-08-09_23-00	Y
+SUBST_CAT	Categorisation of active substances for harmonised risk indicator	2026-02-26_23-00	Y
+SUPPLY	Means of goods and services supply	2022-08-18_23-00	Y
+SUP_MODE	Mode of supply	2022-11-15_23-00	Y
+S_ADJ	Seasonal adjustment	2025-12-16_23-00	Y
+TASK	Type of task or service	2024-03-26_23-00	Y
+TAX	Taxes	2025-08-25_23-00	Y
+TENURE	Tenure status	2019-11-29_23-00	Y
+TERRTYPO	Territorial typology	2022-09-14_23-00	Y
+THICKNESS	Thickness	2021-08-11_23-00	Y
+TILLAGE	Tillage of arable land	2026-04-27_23-00	Y
+TIME	Period of time	2024-03-26_23-00	Y
+TNGPLACE	Training place	2025-12-08_23-00	Y
+TNGPROV	Training providers	2023-09-28_23-00	Y
+TONNAGE	Size classes in gross tonnage	2018-08-10_23-00	Y
+TRAIN	Train category	2023-10-19_23-00	Y
+TRAINING	Training	2025-09-11_23-00	Y
+TRANS1Y	Transition from the previous year situation	2026-06-29_23-00	N
+TRANS2Y	Transition within two years	2026-06-29_23-00	N
+TRANS3Y	Transition within three years	2026-06-29_23-00	N
+TRANS_INC	Income transition	2026-07-06_23-00	Y
+TRA_COV	Transport coverage	2022-12-08_23-00	Y
+TRA_INFR	Transport infrastructure	2026-06-09_23-00	Y
+TRA_MEAS	Traffic and transport measurement	2024-11-11_23-00	Y
+TRA_MODE	Mode of transport	2026-04-29_23-00	Y
+TRA_OPER	Type of operation and loading status	2025-03-31_23-00	Y
+TRA_TYPE	Type of transport	2023-02-06_23-00	Y
+TREESPEC	Tree species	2019-04-09_23-00	Y
+TRIP_ARR	Trip arrangement	2023-03-21_23-00	Y
+TWRK_HR	Taught activities during paid working hours	2023-01-09_23-00	Y
+TY	Type of output (activity)	2025-02-26_23-00	Y
+TYPASSWK	Type of assistance provided/needed for disabled persons to work	2024-03-14_23-00	O
+TYPE_INN	Breakdown by type of innovator	2024-10-29_23-00	O
+TYPPACK	Type of packaging	2024-03-26_23-00	N
+TYP_REAR	Type of rearing	2026-02-25_23-00	N
+UAAREA	Utilised agricultural area	2025-04-28_23-00	Y
+UNIT	Unit of measure	2026-07-08_23-00	Y
+VALUE	Monetary value by size class	2025-08-19_23-00	Y
+VARIABLE	Variable	2024-08-06_23-00	O
+VEHICLE	Vehicles	2024-03-05_23-00	Y
+VESSEL	Type of vessel	2026-07-02_23-00	Y
+VICTIM	Type of victim	2025-10-01_11-00	Y
+VINESPEC	Specialisation of the vine holdings	2019-05-08_23-00	Y
+VINETYPE	Type of vines	2021-07-26_23-00	Y
+VINEVAR	Main grape varieties	2026-03-04_23-00	Y
+VIOLENCE	Type of violence	2026-03-16_23-00	Y
+VITYPE	Type of area under vines	2024-03-14_23-00	O
+VIT_VTV	Part of area under vines in agricultural area in use (AA)	2024-03-14_23-00	O
+VOLUME	Volume	2025-09-08_23-00	Y
+VOT_CAT	Category of voters	2023-12-04_23-00	Y
+VTARCLS	Class of area under vines	2024-03-14_23-00	O
+WASTE	Waste categories	2025-10-16_23-00	Y
+WATPOL	Water pollutants	2020-01-27_23-00	Y
+WAT_PROC	Water process	2026-04-09_23-00	Y
+WAT_SRC	Water sources	2025-07-07_23-00	Y
+WEEK	Calendar week	2020-04-16_23-00	Y
+WEIGHT	Weight	2025-09-08_23-00	Y
+WINE_VAR	Wine-grape vine variety	2024-03-27_23-00	N
+WITHDRAW	Type of withdrawal	2021-03-25_23-00	Y
+WORKFIND	Method used for finding work	2018-02-22_23-00	Y
+WORKINT	Work intensity	2024-02-13_23-00	Y
+WORKPLACE	Place of work	2023-09-01_11-00	Y
+WORKPROC	Working process	2022-08-01_23-00	Y
+WORKSEEK	Method used for seeking work	2023-05-08_23-00	Y
+WORKSTUD	Work experience during studies	2022-06-09_23-00	Y
+WORKTIME	Working time	2024-02-27_23-00	Y
+WRKENV	Working environment	2026-06-18_23-00	N
+WRKMETH	Work methods	2020-11-18_23-00	Y
+WRKSTAT	Workstation	2026-06-16_23-00	N
+WRKT_STSK	Working time on specific task	2024-02-27_23-00	Y
+WRK_ASG	Work assignment	2024-02-27_23-00	Y
+WSITUAT	Work situation	2026-04-29_23-00	Y
+WSTATUS	Labour force and employment status	2026-06-17_23-00	Y
+WSTATUS2	Employment status in the second job	2026-06-17_23-00	Y
+WSTATUSP	Previous employment status	2026-05-21_23-00	Y
+WSTATUSPR	Preferred employment status	2026-04-29_23-00	Y
+WSTA_ACC	Working status after the accident	2024-03-14_23-00	O
+WST_OPER	Waste management operations	2026-04-09_23-00	Y
+WTFLEX	Working time flexibility	2024-02-27_23-00	Y
+WW_GTD	Wastewater generation, treatment and discharge	2023-07-05_23-00	Y
+WW_TP	Wastewater treatment plants	2023-07-05_23-00	Y
+WW_TPAR	Wastewater treatment plant parameters	2025-12-16_23-00	Y
+YES_NO	Survey answer - Yes/No	2025-11-17_23-00	Y
+YIELDCLS	Yield class	2024-11-05_23-00	O
+YLD_CURV	Yield curve	2024-02-13_23-00	Y
+YNLFS	Modalities of the variable for the ad-hoc module	2024-03-14_23-00	O
+YN_ACS	Access - Yes/No	2025-10-17_23-00	Y
+YN_AROPE	At risk of poverty or social exclusion - Yes/No	2024-11-20_23-00	Y
+YN_AWR	Awareness - Yes/No	2024-11-20_23-00	Y
+YN_CARE	Use of profesional care - Yes/No	2023-11-07_23-00	Y
+YN_CONSQ	Consequences - Yes/No	2024-11-20_23-00	Y
+YN_DIF	Difficulties - Yes/No	2023-06-08_23-00	Y
+YN_DIS	Disability - Yes/No	2023-06-08_23-00	Y
+YN_ESB	Entitlement to sickness benefits - Yes/No	2025-11-17_23-00	Y
+YN_EUB	Entitlement to unemployment benefits - Yes/No	2025-11-17_23-00	Y
+YN_OVBUR	Overburden - Yes/No	2024-11-20_23-00	Y
+YN_RSKPOV	At risk of poverty - Yes/No	2024-11-20_23-00	Y
+YN_SGN	Significant - Yes/No	2024-11-20_23-00	Y
+YN_VICT	Victim - Yes/No	2024-11-20_23-00	Y
+YN_WEB	Internet booking - Yes/No	2024-11-20_23-00	Y
+Y_ARRIV	Year of arrival	2026-05-27_23-00	Y
+Y_BIRTH	Year of birth	2026-05-27_23-00	Y
+Y_CONST	Year of construction	2026-05-27_23-00	Y
+Y_REGIS	Year of registration	2026-04-27_23-00	Y
