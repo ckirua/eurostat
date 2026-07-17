@@ -1,0 +1,38 @@
+{
+  "version": "2.0",
+  "class": "dataset",
+  "label": "GDP and main components",
+  "id": ["freq", "unit", "geo", "time"],
+  "size": [1, 1, 2, 2],
+  "dimension": {
+    "freq": {
+      "label": "Time frequency",
+      "category": {
+        "index": { "A": 0 },
+        "label": { "A": "Annual" }
+      }
+    },
+    "unit": {
+      "label": "Unit",
+      "category": {
+        "index": { "EUR": 0 },
+        "label": { "EUR": "Euro" }
+      }
+    },
+    "geo": {
+      "label": "Geopolitical entity",
+      "category": {
+        "index": { "DE": 0, "FR": 1 },
+        "label": { "DE": "Germany", "FR": "France" }
+      }
+    },
+    "time": {
+      "label": "Time",
+      "category": {
+        "index": { "2020": 0, "2021": 1 },
+        "label": { "2020": "2020", "2021": "2021" }
+      }
+    }
+  },
+  "value": [100.0, 101.0, 200.0, 201.0]
+}

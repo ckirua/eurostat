@@ -1,0 +1,5 @@
+"title"	"code"	"type"	"last update of data"	"last table structure change"	"data start"	"data end"	"values"
+"Database by themes"	"data"	"folder"	" "	" "	" "	" "	
+"    General and regional statistics"	"general"	"folder"	" "	" "	" "	" "	
+"                Gross domestic product (GDP) and main components (output, expenditure and income) - annual data"	"nama_10_gdp"	"dataset"	"08.07.2026"	"19.06.2026"	"1975"	"2025"	1092924
+"                    Economic sentiment and confidence indicators by sector - monthly data"	"ei_bssi_m_r2"	"dataset"	"29.06.2026"	"29.06.2026"	"1980-01"	"2026-06"	141274

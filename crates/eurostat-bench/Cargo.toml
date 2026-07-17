@@ -1,0 +1,15 @@
+[package]
+name = "eurostat-bench"
+version.workspace = true
+edition.workspace = true
+publish = false
+
+[dependencies]
+eurostat = { path = "../eurostat", features = ["export"] }
+
+[dev-dependencies]
+criterion.workspace = true
+
+[[bench]]
+name = "parse_json_stat"
+harness = false
