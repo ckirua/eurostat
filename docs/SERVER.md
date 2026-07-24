@@ -25,13 +25,7 @@ curl -fsSL .../install.sh | bash -s -- --dir /opt/eurostat --branch main --globa
 ./scripts/install.sh --help
 ```
 
-After install, configure credentials:
-
-```bash
-cp ~/eurostat/.env.example ~/.env
-chmod 600 ~/.env
-# edit ~/.env — see docs/CONFIGURATION.md
-```
+After install, add the needed keys from `.env.example` into `~/.env` (see [CONFIGURATION.md](CONFIGURATION.md)). Do not replace `~/.env`.
 
 ## 1. Clone and build
 
@@ -54,12 +48,7 @@ eurostat bulk list | head
 
 ## 2. Environment variables
 
-Create `~/.env` from the template (never commit this file):
-
-```bash
-cp .env.example ~/.env
-chmod 600 ~/.env
-```
+Put secrets in `~/.env` (never commit this file). Use `.env.example` as a reference and add only the keys you need — never replace `~/.env` with the example.
 
 Minimum for S3 sync:
 

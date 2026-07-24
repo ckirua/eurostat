@@ -42,12 +42,7 @@ flowchart LR
 
 ## Environment variables
 
-Copy the template and fill in S3 + ClickHouse values:
-
-```bash
-cp "$REPO/.env.example" ~/.env
-chmod 600 ~/.env
-```
+Add S3 + ClickHouse values to `~/.env` using `.env.example` as a reference (append or edit in place — never replace `~/.env`).
 
 **Local ClickHouse** (default):
 

@@ -41,8 +41,8 @@ Options:
   -h, --help       Show this help
 
 After install:
-  1. cp .env.example ~/.env && chmod 600 ~/.env
-  2. Edit ~/.env — see docs/CONFIGURATION.md
+  1. Add keys from .env.example into ~/.env (never replace ~/.env)
+  2. See docs/CONFIGURATION.md
   3. ./scripts/sync-s3.sh  (and docs/DEPLOY.md for ClickHouse)
 EOF
 }

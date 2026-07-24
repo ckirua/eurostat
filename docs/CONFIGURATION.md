@@ -4,11 +4,7 @@ How to configure the Eurostat CLI and scripts for local use, S3 mirroring, and C
 
 All secrets live in **`~/.env`** (never commit this file). Scripts under `scripts/` load it automatically. A ready-to-edit template ships as [`.env.example`](../.env.example).
 
-```bash
-cp .env.example ~/.env
-chmod 600 ~/.env
-# edit ~/.env — fill in the values for the features you use
-```
+Add the variables you need from `.env.example` into `~/.env` (append or edit in place). Never replace `~/.env` with the example file.
 
 Use **LF** line endings (not Windows CRLF). If you see `$'\r': command not found`:
 

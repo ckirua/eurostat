@@ -31,9 +31,7 @@ git clone https://github.com/ckirua/eurostat.git
 cd eurostat
 ./scripts/install.sh --dir .
 
-# Configure (S3 and/or ClickHouse — see docs/CONFIGURATION.md)
-cp .env.example ~/.env && chmod 600 ~/.env
-# edit ~/.env, then:
+# Configure: add S3_EUROSTAT_* / CLICKHOUSE_* to ~/.env (see docs/CONFIGURATION.md)
 ./scripts/sync-s3.sh
 ./scripts/clickhouse-ingest.sh   # after schema + S3 coverage
 ```
@@ -58,11 +56,7 @@ Requires Rust 1.85+.
 
 ## Configuration
 
-Secrets and connection settings go in **`~/.env`** (never commit it). Start from the template:
-
-```bash
-cp .env.example ~/.env && chmod 600 ~/.env
-```
+Secrets and connection settings go in **`~/.env`** (never commit it). Use [`.env.example`](.env.example) as a reference for which keys to add — append or edit in place; never replace the whole file.
 
 | You want to… | Set these |
 |--------------|-----------|
