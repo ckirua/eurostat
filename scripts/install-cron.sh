@@ -30,6 +30,8 @@ Schedule (UTC):
   Sunday 03:00  sync-s3.sh       → Eurostat API to S3
   Sunday 03:30  clickhouse-ingest.sh → S3 to ClickHouse
 
+Loads \$HOME/.env via ENV_FILE (S3_EUROSTAT_BUCKET + S3_URL / S3_ACCESS_KEY / S3_SECRET_KEY, CLICKHOUSE_*).
+
 Logs (default): /var/log/eurostat/
   Override with EUROSTAT_LOG_DIR
 Docs: docs/DEPLOY.md , docs/CONFIGURATION.md
@@ -101,9 +103,9 @@ $MARKER_BEGIN
 SHELL=/bin/bash
 PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:\$HOME/.cargo/bin
 # Sunday 03:00 UTC — Eurostat → S3
-0 3 * * 0 cd $REPO && ./scripts/sync-s3.sh >> $LOG_DIR/sync-s3.log 2>&1
+0 3 * * 0 cd $REPO && ENV_FILE=\$HOME/.env ./scripts/sync-s3.sh >> $LOG_DIR/sync-s3.log 2>&1
 # Sunday 03:30 UTC — S3 → ClickHouse
-30 3 * * 0 cd $REPO && ./scripts/clickhouse-ingest.sh >> $LOG_DIR/clickhouse-ingest.log 2>&1
+30 3 * * 0 cd $REPO && ENV_FILE=\$HOME/.env ./scripts/clickhouse-ingest.sh >> $LOG_DIR/clickhouse-ingest.log 2>&1
 $MARKER_END
 EOF
 }
@@ -113,7 +115,7 @@ already_installed() {
   current="$(read_crontab || true)"
   [[ -n "$current" ]] || return 1
   printf '%s\n' "$current" | grep -Fq "$MARKER_BEGIN" || return 1
-  printf '%s\n' "$current" | grep -Fq "cd $REPO && ./scripts/sync-s3.sh" || return 1
+  printf '%s\n' "$current" | grep -Fq "cd $REPO && ENV_FILE=\$HOME/.env ./scripts/sync-s3.sh" || return 1
   printf '%s\n' "$current" | grep -Fq "$LOG_DIR/sync-s3.log" || return 1
 }
 

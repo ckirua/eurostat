@@ -220,10 +220,10 @@ Sunday batch: refresh S3, then ingest new/changed datasets into ClickHouse.
 
 ```cron
 # Eurostat → S3 (Sunday 03:00 UTC)
-0 3 * * 0  cd /path/to/eurostat && ./scripts/sync-s3.sh >> /var/log/eurostat/sync-s3.log 2>&1
+0 3 * * 0  cd /path/to/eurostat && ENV_FILE=$HOME/.env ./scripts/sync-s3.sh >> /var/log/eurostat/sync-s3.log 2>&1
 
 # S3 → ClickHouse (Sunday 03:30 UTC; resume skips unchanged)
-30 3 * * 0 cd /path/to/eurostat && ./scripts/clickhouse-ingest.sh >> /var/log/eurostat/clickhouse-ingest.log 2>&1
+30 3 * * 0 cd /path/to/eurostat && ENV_FILE=$HOME/.env ./scripts/clickhouse-ingest.sh >> /var/log/eurostat/clickhouse-ingest.log 2>&1
 ```
 
 Install (as the user that owns `~/.env`):
