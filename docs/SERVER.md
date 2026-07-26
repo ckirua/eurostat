@@ -54,10 +54,10 @@ Minimum for S3 sync:
 
 ```bash
 S3_EUROSTAT_BUCKET=eurostat
-S3_EUROSTAT_ENDPOINT=https://fsn1.your-objectstorage.com
-S3_EUROSTAT_REGION=fsn1
-S3_EUROSTAT_ACCESS_KEY=your_access_key
-S3_EUROSTAT_SECRET_KEY=your_secret_key
+S3_URL=https://fsn1.your-objectstorage.com
+S3_REGION=fsn1
+S3_ACCESS_KEY=your_access_key
+S3_SECRET_KEY=your_secret_key
 EUROSTAT_PARALLEL=16
 ```
 
@@ -131,7 +131,7 @@ make test       # workspace tests
 
 | Problem | Fix |
 |---------|-----|
-| `S3_EUROSTAT_ACCESS_KEY is not set` | `source ~/.env` or run via `./scripts/sync-s3.sh` |
+| `S3_ACCESS_KEY … is not set` | `source ~/.env` or run via `./scripts/sync-s3.sh` |
 | `$'\r': command not found` | `sed -i 's/\r$//' ~/.env` |
 | 403 / auth errors | Use keys created for the target bucket |
 | Wrong endpoint | Check provider console; include `https://` and the correct region endpoint |

@@ -28,7 +28,7 @@ else
 fi
 
 echo "==> S3 bucket: ${S3_EUROSTAT_BUCKET:-eurostat}"
-echo "==> Endpoint: ${S3_EUROSTAT_ENDPOINT:-unset}"
+echo "==> Endpoint: ${S3_EUROSTAT_ENDPOINT:-${S3_URL:-unset}}"
 echo "==> Parallel: ${PARALLEL}"
 echo "==> Command: ${BIN[*]} mirror s3 --source dissemination --resume"
 

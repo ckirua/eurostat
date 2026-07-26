@@ -251,7 +251,7 @@ Optional quarterly codelist refresh (Eurostat releases):
 | Problem | Fix |
 |---------|-----|
 | `schema not applied` | `clickhouse-client --multiquery < sql/clickhouse/002_schema.sql` |
-| `S3_EUROSTAT_* is not set` | Run via `./scripts/*.sh` or `source ~/.env` |
+| `S3_URL` / `S3_ACCESS_KEY` is not set | Run via `./scripts/*.sh` or `source ~/.env` |
 | Ingest skips everything | Expected with `--resume` if `ingest_log` row_count matches manifest; drop log rows or wait for S3 updates |
 | `v_timeseries` / `dictGet` errors | Dictionaries in `002_schema.sql` may need password in `SOURCE`; reload after fixing auth |
 | Slow ingest | Raise `CLICKHOUSE_INGEST_PARALLEL`; ensure HTTP(S) port reachable (`8123` or `8443` with TLS) |

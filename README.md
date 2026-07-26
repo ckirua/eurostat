@@ -31,7 +31,7 @@ git clone https://github.com/ckirua/eurostat.git
 cd eurostat
 ./scripts/install.sh --dir .
 
-# Configure: add S3_EUROSTAT_* / CLICKHOUSE_* to ~/.env (see docs/CONFIGURATION.md)
+# Configure: add S3_EUROSTAT_BUCKET + S3_URL / S3_ACCESS_KEY / S3_SECRET_KEY / CLICKHOUSE_* to ~/.env
 ./scripts/sync-s3.sh
 ./scripts/clickhouse-ingest.sh   # after schema + S3 coverage
 ```
@@ -61,18 +61,18 @@ Secrets and connection settings go in **`~/.env`** (never commit it). Use [`.env
 | You want to… | Set these |
 |--------------|-----------|
 | Fetch / search / export only | Nothing required |
-| Mirror to S3-compatible storage | `S3_EUROSTAT_*` |
-| Ingest into ClickHouse | `S3_EUROSTAT_*` + `CLICKHOUSE_*` |
+| Mirror to S3-compatible storage | `S3_EUROSTAT_BUCKET` + shared `S3_*` |
+| Ingest into ClickHouse | `S3_EUROSTAT_BUCKET` + shared `S3_*` + `CLICKHOUSE_*` |
 
 Full variable reference, local vs remote ClickHouse, and TLS: **[docs/CONFIGURATION.md](docs/CONFIGURATION.md)**.
 
 | Variable | When needed | Default | Purpose |
 |----------|-------------|---------|---------|
-| `S3_EUROSTAT_ACCESS_KEY` | S3 | — | Access key |
-| `S3_EUROSTAT_SECRET_KEY` | S3 | — | Secret key |
-| `S3_EUROSTAT_ENDPOINT` | S3 | — | S3-compatible HTTPS endpoint |
+| `S3_ACCESS_KEY` | S3 | — | Access key |
+| `S3_SECRET_KEY` | S3 | — | Secret key |
+| `S3_URL` | S3 | — | S3-compatible HTTPS endpoint |
 | `S3_EUROSTAT_BUCKET` | optional | `eurostat` | Bucket name |
-| `S3_EUROSTAT_REGION` | optional | `fsn1` | Region for signing |
+| `S3_REGION` | optional | `fsn1` | Region for signing |
 | `EUROSTAT_PARALLEL` | optional | `16` | Parallel fetch/upload workers |
 | `CLICKHOUSE_HOST` | optional | `127.0.0.1` | ClickHouse host |
 | `CLICKHOUSE_PORT` | optional | `9000` | Native port (`9440` with TLS) |
@@ -158,7 +158,7 @@ eurostat clickhouse load-codelists
 |---------|-----|
 | S3 auth / 403 | Keys must match the target bucket; check endpoint in your provider console |
 | `$'\r': command not found` | `sed -i 's/\r$//' ~/.env` |
-| `S3_EUROSTAT_ACCESS_KEY is not set` | Configure `~/.env` (see [docs/CONFIGURATION.md](docs/CONFIGURATION.md)) or run via `./scripts/sync-s3.sh` |
+| `S3_ACCESS_KEY … is not set` | Configure `~/.env` (see [docs/CONFIGURATION.md](docs/CONFIGURATION.md)) or run via `./scripts/sync-s3.sh` |
 | `search` returns nothing | `eurostat cache refresh` |
 | No local datasets | Use `sync-s3.sh` for S3, or `sync-all.sh` for local mirror |
 

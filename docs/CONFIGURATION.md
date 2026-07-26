@@ -19,32 +19,34 @@ sed -i 's/\r$//' ~/.env
 | You want to… | Variables to set |
 |--------------|------------------|
 | Browse / fetch / search Eurostat data | None required (optional: `EUROSTAT_DATA_DIR`) |
-| Mirror datasets to object storage | `S3_EUROSTAT_*` |
-| Ingest S3 data into ClickHouse | `S3_EUROSTAT_*` + `CLICKHOUSE_*` |
+| Mirror datasets to object storage | `S3_EUROSTAT_BUCKET` + shared `S3_*` |
+| Ingest S3 data into ClickHouse | `S3_EUROSTAT_BUCKET` + shared `S3_*` + `CLICKHOUSE_*` |
 
 ---
 
-## Object storage (`S3_EUROSTAT_*`)
+## Object storage (`S3_*`)
 
 Works with any **S3-compatible** endpoint (AWS S3, MinIO, Hetzner Object Storage, Cloudflare R2, …).
 
+Shared credentials match the multi-app `~/.env` layout. Eurostat-only aliases still work and take precedence when set.
+
 | Variable | Required | Default | Description |
 |----------|----------|---------|-------------|
-| `S3_EUROSTAT_ACCESS_KEY` | yes (for S3) | — | Access key id |
-| `S3_EUROSTAT_SECRET_KEY` | yes (for S3) | — | Secret access key |
-| `S3_EUROSTAT_ENDPOINT` | yes (for S3) | — | HTTPS endpoint, e.g. `https://fsn1.your-objectstorage.com` |
+| `S3_ACCESS_KEY` | yes (for S3) | — | Access key id (`S3_EUROSTAT_ACCESS_KEY` also accepted) |
+| `S3_SECRET_KEY` | yes (for S3) | — | Secret access key (`S3_EUROSTAT_SECRET_KEY` also accepted) |
+| `S3_URL` | yes (for S3) | — | HTTPS endpoint (`S3_EUROSTAT_ENDPOINT` also accepted) |
 | `S3_EUROSTAT_BUCKET` | no | `eurostat` | Bucket name |
-| `S3_EUROSTAT_REGION` | no | `fsn1` | Region label used for request signing |
+| `S3_REGION` | no | `fsn1` | Region for signing (`S3_EUROSTAT_REGION` also accepted) |
 | `EUROSTAT_PARALLEL` | no | `16` | Parallel fetch / upload workers |
 
 Example (Hetzner Object Storage):
 
 ```bash
 S3_EUROSTAT_BUCKET=eurostat
-S3_EUROSTAT_ENDPOINT=https://fsn1.your-objectstorage.com
-S3_EUROSTAT_REGION=fsn1
-S3_EUROSTAT_ACCESS_KEY=your_access_key
-S3_EUROSTAT_SECRET_KEY=your_secret_key
+S3_URL=https://fsn1.your-objectstorage.com
+S3_REGION=fsn1
+S3_ACCESS_KEY=your_access_key
+S3_SECRET_KEY=your_secret_key
 EUROSTAT_PARALLEL=16
 ```
 

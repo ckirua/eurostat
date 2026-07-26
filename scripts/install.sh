@@ -187,7 +187,8 @@ Quick test:
   $bin bulk list | head
 
 Environment (~/.env) — see docs/CONFIGURATION.md:
-  S3_EUROSTAT_*       required for object-storage sync
+  S3_EUROSTAT_BUCKET + S3_URL / S3_ACCESS_KEY / S3_SECRET_KEY  (object storage)
+
   CLICKHOUSE_*        optional, for analytics ingest
   CLICKHOUSE_TLS=1    required when ClickHouse is remote
 

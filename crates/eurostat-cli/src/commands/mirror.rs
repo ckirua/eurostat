@@ -67,7 +67,7 @@ pub struct RunArgs {
     pub limit: Option<usize>,
 }
 
-/// S3 mirror arguments (reads `S3_EUROSTAT_*` env vars).
+/// S3 mirror arguments (reads `S3_EUROSTAT_BUCKET` + shared `S3_*` env vars).
 #[derive(Debug, Args)]
 pub struct S3RunArgs {
     /// Bulk source to mirror.

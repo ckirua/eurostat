@@ -4,7 +4,7 @@
 # Prerequisites and ops: docs/DEPLOY.md
 #   - S3 mirror (./scripts/sync-s3.sh)
 #   - ClickHouse schema (sql/clickhouse/002_schema.sql)
-#   - ~/.env with S3_EUROSTAT_* and CLICKHOUSE_* variables
+#   - ~/.env with S3_EUROSTAT_BUCKET / S3_URL / S3_ACCESS_KEY / S3_SECRET_KEY and CLICKHOUSE_*
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -25,7 +25,7 @@ CH_DB="${CLICKHOUSE_DATABASE:-eurostat}"
 
 echo "==> ClickHouse: ${CH_USER}@${CH_HOST}:${CH_PORT}/${CH_DB}"
 echo "==> S3 bucket: ${S3_EUROSTAT_BUCKET:-eurostat}"
-echo "==> Endpoint: ${S3_EUROSTAT_ENDPOINT:-unset}"
+echo "==> Endpoint: ${S3_EUROSTAT_ENDPOINT:-${S3_URL:-unset}}"
 
 # Never put CLICKHOUSE_PASSWORD on argv (visible in ps /proc). Prefer a
 # mode-600 client config that reads the password from the environment.
