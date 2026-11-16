@@ -113,6 +113,24 @@ async fn convert_file(
             }
             entry
         }
+        Err(err) if err.is_temporarily_unavailable() => {
+            warn!(
+                dataset_id = %file.dataset_id,
+                %err,
+                "dataset temporarily unavailable; skipping"
+            );
+            let entry = ManifestEntry {
+                source: source.to_string(),
+                dataset_id: file.dataset_id.clone(),
+                url: file.url.clone(),
+                status: "skipped".to_string(),
+                path: None,
+                rows: None,
+                error: Some(err.to_string()),
+            };
+            let _ = append_manifest(config, &entry);
+            entry
+        }
         Err(err) => {
             let entry = ManifestEntry {
                 source: source.to_string(),

@@ -16,12 +16,14 @@ use super::config::ClickHouseConfig;
 use super::parquet::fetch_s3_parquet_dataset;
 
 /// Default pilot / hero datasets for smoke testing.
+/// Hero datasets for `--featured` / catalogue flags.
+/// IDs must match S3 object stems (Eurostat inventory uses uppercase).
 pub const FEATURED_DATASETS: &[&str] = &[
-    "nama_10_gdp",
-    "prc_hicp_manr",
-    "une_rt_m",
-    "demo_pjan",
-    "bop_c6_q",
+    "NAMA_10_GDP",
+    "PRC_HICP_MANR",
+    "UNE_RT_M",
+    "DEMO_PJAN",
+    "BOP_C6_Q",
 ];
 
 /// Dataset candidate from the S3 manifest.

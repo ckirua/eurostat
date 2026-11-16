@@ -40,7 +40,8 @@ tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 url = "2.5"
 wiremock = "0.6"
 rust-s3 = { version = "0.35", default-features = false, features = ["with-tokio", "tokio-rustls-tls"] }
-clickhouse = { version = "0.13", features = ["time", "inserter", "chrono"] }
+# 0.15+ required for ClickHouse 26.9+ HTTP compression (lz4 framing).
+clickhouse = { version = "0.15", features = ["time", "inserter", "chrono"] }
 chrono = { version = "0.4", default-features = false, features = ["std"] }
 bytes = "1.10"
 

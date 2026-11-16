@@ -15,7 +15,7 @@ if [[ -f "$ENV_FILE" ]]; then
   set +a
 fi
 
-PARALLEL="${EUROSTAT_PARALLEL:-16}"
+PARALLEL="${EUROSTAT_PARALLEL:-8}"
 
 if [[ -n "${EUROSTAT_BIN:-}" ]]; then
   BIN=("$EUROSTAT_BIN")

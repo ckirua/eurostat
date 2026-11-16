@@ -227,6 +227,15 @@ async fn upload_file(
                 }
             }
         }
+        Err(err) if err.is_temporarily_unavailable() => {
+            warn!(
+                dataset_id = %file.dataset_id,
+                %key,
+                %err,
+                "dataset temporarily unavailable; skipping"
+            );
+            base("skipped", None, Some(err.to_string()))
+        }
         Err(err) => {
             warn!(dataset_id = %file.dataset_id, %key, %err, "conversion failed");
             base("failed", None, Some(err.to_string()))
