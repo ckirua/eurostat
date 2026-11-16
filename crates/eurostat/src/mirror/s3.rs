@@ -2,6 +2,7 @@
 
 use std::sync::Arc;
 
+use chrono::{DateTime, FixedOffset, Utc};
 use futures::stream::{self, StreamExt};
 use s3::bucket::Bucket;
 use s3::creds::Credentials;
@@ -179,6 +180,7 @@ async fn upload_file(
         "dissemination"
     };
     let key = s3_object_key(&file.dataset_id, source);
+    let change_stamp = inventory_change_stamp(file);
     let base = |status: &str, rows: Option<usize>, error: Option<String>| ManifestEntry {
         source: source.to_string(),
         dataset_id: file.dataset_id.clone(),
@@ -187,17 +189,38 @@ async fn upload_file(
         path: Some(key.clone()),
         rows,
         error,
+        last_data_change: change_stamp.clone(),
     };
 
     if resume {
         match bucket.head_object(&key).await {
-            Ok((_, code)) if (200..300).contains(&code) => {
-                info!(dataset_id = %file.dataset_id, %key, code, "skipping existing S3 object");
-                return base("skipped", None, None);
+            Ok((head, code)) if (200..300).contains(&code) => {
+                if object_covers_inventory(&head.last_modified, file) {
+                    info!(
+                        dataset_id = %file.dataset_id,
+                        %key,
+                        inventory = change_stamp.as_deref().unwrap_or("-"),
+                        s3_modified = head.last_modified.as_deref().unwrap_or("-"),
+                        "skipping unchanged S3 object"
+                    );
+                    return base("skipped", None, None);
+                }
+                info!(
+                    dataset_id = %file.dataset_id,
+                    %key,
+                    inventory = change_stamp.as_deref().unwrap_or("-"),
+                    s3_modified = head.last_modified.as_deref().unwrap_or("-"),
+                    "S3 object stale vs Eurostat inventory; refreshing"
+                );
             }
             Ok((_, 404)) | Err(_) => {}
             Ok((_, code)) => {
-                warn!(dataset_id = %file.dataset_id, %key, code, "unexpected HEAD status, re-uploading");
+                warn!(
+                    dataset_id = %file.dataset_id,
+                    %key,
+                    code,
+                    "unexpected HEAD status, re-uploading"
+                );
             }
         }
     }
@@ -259,11 +282,88 @@ fn failed_entry(file: &BulkFile, error: &str) -> ManifestEntry {
         path: None,
         rows: None,
         error: Some(error.to_string()),
+        last_data_change: inventory_change_stamp(file),
     }
+}
+
+/// Best-effort stamp for manifest logging (later of data/structural change).
+fn inventory_change_stamp(file: &BulkFile) -> Option<String> {
+    match (
+        file.last_data_change
+            .as_deref()
+            .and_then(parse_inventory_time),
+        file.last_structural_change
+            .as_deref()
+            .and_then(parse_inventory_time),
+        &file.last_data_change,
+        &file.last_structural_change,
+    ) {
+        (Some(data), Some(structural), Some(data_s), Some(structural_s)) => {
+            if data >= structural {
+                Some(data_s.clone())
+            } else {
+                Some(structural_s.clone())
+            }
+        }
+        (Some(_), None, Some(data_s), _) => Some(data_s.clone()),
+        (None, Some(_), _, Some(structural_s)) => Some(structural_s.clone()),
+        (_, _, Some(data_s), _) => Some(data_s.clone()),
+        (_, _, _, Some(structural_s)) => Some(structural_s.clone()),
+        _ => None,
+    }
+}
+
+/// Skip when the S3 object is at least as new as the Eurostat inventory change.
+///
+/// If inventory timestamps are missing, keep the old skip-if-exists behavior.
+fn object_covers_inventory(s3_last_modified: &Option<String>, file: &BulkFile) -> bool {
+    let Some(inventory_ts) = latest_inventory_change(file) else {
+        return true;
+    };
+    let Some(object_ts) = s3_last_modified
+        .as_deref()
+        .and_then(parse_s3_time)
+        .map(|ts| ts.with_timezone(&Utc))
+    else {
+        // Object exists but mtime unreadable → refresh to be safe.
+        return false;
+    };
+    object_ts >= inventory_ts
+}
+
+fn latest_inventory_change(file: &BulkFile) -> Option<DateTime<Utc>> {
+    [
+        file.last_data_change.as_deref(),
+        file.last_structural_change.as_deref(),
+    ]
+    .into_iter()
+    .flatten()
+    .filter_map(parse_inventory_time)
+    .map(|ts| ts.with_timezone(&Utc))
+    .max()
+}
+
+fn parse_inventory_time(raw: &str) -> Option<DateTime<FixedOffset>> {
+    let raw = raw.trim();
+    if raw.is_empty() || raw == "-" {
+        return None;
+    }
+    DateTime::parse_from_str(raw, "%Y-%m-%dT%H:%M:%S%z")
+        .or_else(|_| DateTime::parse_from_rfc3339(raw))
+        .ok()
+}
+
+fn parse_s3_time(raw: &str) -> Option<DateTime<FixedOffset>> {
+    let raw = raw.trim();
+    DateTime::parse_from_rfc3339(raw)
+        .or_else(|_| DateTime::parse_from_str(raw, "%Y-%m-%dT%H:%M:%S%z"))
+        .or_else(|_| DateTime::parse_from_str(raw, "%a, %d %b %Y %H:%M:%S GMT"))
+        .ok()
 }
 
 #[cfg(test)]
 mod tests {
+    use super::*;
     use crate::mirror::{dataset_prefix, s3_object_key};
 
     #[test]
@@ -277,5 +377,50 @@ mod tests {
             "datasets/ei/ei_bssi_m_r2.parquet.zstd"
         );
         assert_eq!(dataset_prefix("demo_pjan"), "demo");
+    }
+
+    fn sample_file(data: Option<&str>, structural: Option<&str>) -> BulkFile {
+        BulkFile {
+            dataset_id: "AACT_ALI01".into(),
+            url: "https://example.com/?format=TSV".into(),
+            format: "tsv".into(),
+            size_bytes: None,
+            last_data_change: data.map(str::to_string),
+            last_structural_change: structural.map(str::to_string),
+        }
+    }
+
+    #[test]
+    fn skips_when_s3_mtime_covers_inventory_change() {
+        let file = sample_file(
+            Some("2026-11-11T11:00:00+0100"),
+            Some("2026-03-24T11:00:00+0100"),
+        );
+        assert!(object_covers_inventory(
+            &Some("2026-11-15T02:00:00+00:00".into()),
+            &file
+        ));
+    }
+
+    #[test]
+    fn refreshes_when_inventory_newer_than_s3_object() {
+        let file = sample_file(
+            Some("2026-11-11T11:00:00+0100"),
+            Some("2026-03-24T11:00:00+0100"),
+        );
+        // Object uploaded in July; inventory says Nov data change → must refresh.
+        assert!(!object_covers_inventory(
+            &Some("2026-07-13T00:26:19+00:00".into()),
+            &file
+        ));
+    }
+
+    #[test]
+    fn without_inventory_timestamps_keeps_skip_if_exists() {
+        let file = sample_file(None, None);
+        assert!(object_covers_inventory(
+            &Some("2026-07-13T00:26:19+00:00".into()),
+            &file
+        ));
     }
 }

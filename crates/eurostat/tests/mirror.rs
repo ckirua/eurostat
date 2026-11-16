@@ -36,12 +36,16 @@ fn mirror_selects_comext_archives() {
             url: "https://example.com/full_v2_202401.7z".into(),
             format: "archive".into(),
             size_bytes: None,
+            last_data_change: None,
+            last_structural_change: None,
         },
         BulkFile {
             dataset_id: "nama".into(),
             url: "https://example.com/nama.tsv.gz".into(),
             format: "tsv.gz".into(),
             size_bytes: None,
+            last_data_change: None,
+            last_structural_change: None,
         },
     ];
     let comext = select_files(&files, MirrorSource::Comext);

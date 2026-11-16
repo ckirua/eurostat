@@ -22,7 +22,7 @@ bulk = ["dep:indicatif"]
 # Mirror bulk sources into parquet.zstd datasets.
 mirror = ["bulk", "export"]
 # Stream mirror directly to S3-compatible object storage (Hetzner, etc.).
-s3 = ["mirror", "dep:rust-s3"]
+s3 = ["mirror", "dep:rust-s3", "dep:chrono"]
 # Load S3 parquet into ClickHouse.
 clickhouse = ["s3", "export", "dep:clickhouse", "dep:chrono", "dep:bytes", "cache", "bulk"]
 fuzzy-search = ["dep:fuzzy-matcher"]
@@ -53,7 +53,7 @@ url.workspace = true
 tempfile.workspace = true
 rust-s3 = { workspace = true, optional = true }
 clickhouse = { workspace = true, optional = true }
-chrono = { workspace = true, optional = true }
+chrono = { workspace = true, optional = true } # pulled by `s3` / `clickhouse`
 bytes = { workspace = true, optional = true }
 
 [dev-dependencies]

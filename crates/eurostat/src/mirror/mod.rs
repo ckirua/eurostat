@@ -85,18 +85,24 @@ mod tests {
                 url: "https://x/nama.tsv.gz".into(),
                 format: "tsv.gz".into(),
                 size_bytes: None,
+                last_data_change: None,
+                last_structural_change: None,
             },
             BulkFile {
                 dataset_id: "gdp".into(),
                 url: "https://x/gdp?format=SDMX-CSV".into(),
                 format: "sdmx-csv".into(),
                 size_bytes: None,
+                last_data_change: None,
+                last_structural_change: None,
             },
             BulkFile {
                 dataset_id: "full".into(),
                 url: "https://x/full.7z".into(),
                 format: "archive".into(),
                 size_bytes: None,
+                last_data_change: None,
+                last_structural_change: None,
             },
         ];
         let selected = select_files(&files, MirrorSource::Dissemination);

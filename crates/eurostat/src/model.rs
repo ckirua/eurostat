@@ -134,6 +134,12 @@ pub struct BulkFile {
     pub format: String,
     /// Optional compressed size in bytes.
     pub size_bytes: Option<u64>,
+    /// Inventory `Last data change` timestamp (Eurostat), when known.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_data_change: Option<String>,
+    /// Inventory `Last structural change` timestamp (Eurostat), when known.
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_structural_change: Option<String>,
 }
 
 /// Async job status.

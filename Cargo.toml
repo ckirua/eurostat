@@ -42,7 +42,7 @@ wiremock = "0.6"
 rust-s3 = { version = "0.35", default-features = false, features = ["with-tokio", "tokio-rustls-tls"] }
 # 0.15+ required for ClickHouse 26.9+ HTTP compression (lz4 framing).
 clickhouse = { version = "0.15", features = ["time", "inserter", "chrono"] }
-chrono = { version = "0.4", default-features = false, features = ["std"] }
+chrono = { version = "0.4", default-features = false, features = ["std", "clock"] }
 bytes = "1.10"
 
 # Dev: prioritize compile speed over runtime speed.

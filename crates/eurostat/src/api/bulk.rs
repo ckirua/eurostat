@@ -142,6 +142,12 @@ fn parse_inventory_tsv(text: &str) -> Result<Vec<BulkFile>> {
     let csv_idx = header_parts
         .iter()
         .position(|h| h.to_ascii_lowercase().contains("download url (csv)"));
+    let last_data_idx = header_parts
+        .iter()
+        .position(|h| h.eq_ignore_ascii_case("last data change"));
+    let last_structural_idx = header_parts
+        .iter()
+        .position(|h| h.eq_ignore_ascii_case("last structural change"));
 
     let mut files = Vec::new();
     for line in lines {
@@ -187,6 +193,8 @@ fn parse_inventory_tsv(text: &str) -> Result<Vec<BulkFile>> {
                 url,
                 format,
                 size_bytes: None,
+                last_data_change: inventory_timestamp(&parts, last_data_idx),
+                last_structural_change: inventory_timestamp(&parts, last_structural_idx),
             });
         } else {
             let dataset_id = parts[0].trim().to_string();
@@ -200,10 +208,20 @@ fn parse_inventory_tsv(text: &str) -> Result<Vec<BulkFile>> {
                 url,
                 format,
                 size_bytes: None,
+                last_data_change: None,
+                last_structural_change: None,
             });
         }
     }
     Ok(files)
+}
+
+fn inventory_timestamp(parts: &[&str], idx: Option<usize>) -> Option<String> {
+    let raw = idx
+        .and_then(|i| parts.get(i).copied())
+        .map(str::trim)
+        .filter(|s| !s.is_empty() && *s != "-")?;
+    Some(raw.to_string())
 }
 
 fn classify_bulk_url(url: &str) -> String {
@@ -260,6 +278,8 @@ fn parse_legacy_html_index(html: &str) -> Result<Vec<BulkFile>> {
             url: href.to_string(),
             format,
             size_bytes: None,
+            last_data_change: None,
+            last_structural_change: None,
         });
     }
     Ok(files)
@@ -296,6 +316,8 @@ FOLDER\tFOLDER\t-\t-\t-\t-\t-\n";
         assert!(files[0].url.contains("format=TSV"));
         assert!(files[0].url.contains("compressed=true"));
         assert!(!files[0].url.contains("SDMX-CSV"));
+        assert_eq!(files[0].last_data_change.as_deref(), Some("now"));
+        assert_eq!(files[0].last_structural_change.as_deref(), Some("now"));
     }
 
     #[test]
