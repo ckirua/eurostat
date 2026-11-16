@@ -8,9 +8,12 @@ clickhouse-client --multiquery < sql/clickhouse/001_schema.sql
 
 # 2. Grafana-first v2 schema, views, dictionaries
 clickhouse-client --multiquery < sql/clickhouse/002_schema.sql
+
+# 3. ingest_log last_data_change (resume on inventory revisions)
+clickhouse-client --multiquery < sql/clickhouse/003_schema.sql
 ```
 
-If tables are empty, `002_schema.sql` alone is sufficient (it recreates `catalogue` and `observations`).
+If tables are empty, `002_schema.sql` + `003_schema.sql` cover a current install (`002` recreates `catalogue` / `observations`).
 
 Verify:
 
