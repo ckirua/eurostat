@@ -11,7 +11,7 @@ use crate::error::{Error, Result};
 use crate::mirror::{s3_object_key, ManifestEntry, S3Config, S3_MANIFEST_KEY};
 
 use super::catalogue::upsert_catalogue_metadata;
-use super::client::ClickHouseClient;
+use super::client::{ClickHouseClient, IngestLogEntry};
 use super::config::ClickHouseConfig;
 use super::parquet::fetch_s3_parquet_dataset;
 
@@ -32,6 +32,8 @@ pub struct ManifestDataset {
     pub dataset_id: String,
     pub s3_key: String,
     pub row_count: u64,
+    /// Eurostat inventory change stamp from the S3 mirror manifest, when known.
+    pub last_data_change: Option<String>,
 }
 
 /// Ingest options.
@@ -98,15 +100,18 @@ pub async fn run_ingest(
             Err((dataset_id, err)) => {
                 status.failed += 1;
                 warn!(dataset_id = %dataset_id, %err, "dataset ingest failed");
+                let failed_key = s3_object_key(&dataset_id, "dissemination");
+                let err_text = err.to_string();
                 if let Err(log_err) = client
-                    .insert_ingest_log(
-                        &dataset_id,
-                        &s3_object_key(&dataset_id, "dissemination"),
-                        0,
-                        0,
-                        "failed",
-                        Some(&err.to_string()),
-                    )
+                    .insert_ingest_log(IngestLogEntry {
+                        dataset_id: &dataset_id,
+                        s3_key: &failed_key,
+                        s3_row_count: 0,
+                        row_count: 0,
+                        status: "failed",
+                        error: Some(&err_text),
+                        last_data_change: None,
+                    })
                     .await
                 {
                     warn!(%log_err, "failed to write ingest_log");
@@ -142,11 +147,21 @@ async fn ingest_one_dataset(
 
     if resume
         && client
-            .is_ingested_with_row_count(dataset_id, target.row_count)
+            .is_ingested_current(
+                dataset_id,
+                target.row_count,
+                target.last_data_change.as_deref(),
+            )
             .await
             .map_err(|e| (dataset_id.clone(), e))?
     {
-        info!(dataset_id, %s3_key, rows = target.row_count, "skipping unchanged dataset");
+        info!(
+            dataset_id,
+            %s3_key,
+            rows = target.row_count,
+            last_data_change = target.last_data_change.as_deref().unwrap_or("-"),
+            "skipping unchanged dataset"
+        );
         return Ok(IngestOutcome::Skipped);
     }
 
@@ -171,11 +186,25 @@ async fn ingest_one_dataset(
         .map_err(|e| (dataset_id.clone(), e))?;
 
     client
-        .insert_ingest_log(dataset_id, s3_key, target.row_count, row_count, "ok", None)
+        .insert_ingest_log(IngestLogEntry {
+            dataset_id,
+            s3_key,
+            s3_row_count: target.row_count,
+            row_count,
+            status: "ok",
+            error: None,
+            last_data_change: target.last_data_change.as_deref(),
+        })
         .await
         .map_err(|e| (dataset_id.clone(), e))?;
 
-    info!(dataset_id, %s3_key, row_count, "ingested dataset into ClickHouse");
+    info!(
+        dataset_id,
+        %s3_key,
+        row_count,
+        last_data_change = target.last_data_change.as_deref().unwrap_or("-"),
+        "ingested dataset into ClickHouse"
+    );
     Ok(IngestOutcome::Done)
 }
 
@@ -224,6 +253,7 @@ fn parse_manifest_ok_entries(content: &str) -> Vec<ManifestDataset> {
                 dataset_id: entry.dataset_id,
                 s3_key,
                 row_count: entry.rows.unwrap_or(0) as u64,
+                last_data_change: entry.last_data_change,
             }
         })
         .collect();
@@ -235,20 +265,32 @@ fn resolve_targets(options: &IngestOptions, manifest: &[ManifestDataset]) -> Vec
     if let Some(ids) = &options.datasets {
         return ids
             .iter()
-            .map(|id| ManifestDataset {
-                dataset_id: id.clone(),
-                s3_key: s3_object_key(id, "dissemination"),
-                row_count: 0,
+            .map(|id| {
+                let from_manifest = manifest.iter().find(|d| d.dataset_id == *id);
+                ManifestDataset {
+                    dataset_id: id.clone(),
+                    s3_key: from_manifest
+                        .map(|d| d.s3_key.clone())
+                        .unwrap_or_else(|| s3_object_key(id, "dissemination")),
+                    row_count: from_manifest.map(|d| d.row_count).unwrap_or(0),
+                    last_data_change: from_manifest.and_then(|d| d.last_data_change.clone()),
+                }
             })
             .collect();
     }
     if options.featured {
         return FEATURED_DATASETS
             .iter()
-            .map(|id| ManifestDataset {
-                dataset_id: (*id).to_string(),
-                s3_key: s3_object_key(id, "dissemination"),
-                row_count: 0,
+            .map(|id| {
+                let from_manifest = manifest.iter().find(|d| d.dataset_id == *id);
+                ManifestDataset {
+                    dataset_id: (*id).to_string(),
+                    s3_key: from_manifest
+                        .map(|d| d.s3_key.clone())
+                        .unwrap_or_else(|| s3_object_key(id, "dissemination")),
+                    row_count: from_manifest.map(|d| d.row_count).unwrap_or(0),
+                    last_data_change: from_manifest.and_then(|d| d.last_data_change.clone()),
+                }
             })
             .collect();
     }

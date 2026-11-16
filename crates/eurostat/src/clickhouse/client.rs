@@ -9,6 +9,18 @@ use crate::error::{Error, Result};
 use super::config::ClickHouseConfig;
 use super::row::ObservationRow;
 
+/// Fields written to `eurostat.ingest_log`.
+#[derive(Debug, Clone)]
+pub struct IngestLogEntry<'a> {
+    pub dataset_id: &'a str,
+    pub s3_key: &'a str,
+    pub s3_row_count: u64,
+    pub row_count: u64,
+    pub status: &'a str,
+    pub error: Option<&'a str>,
+    pub last_data_change: Option<&'a str>,
+}
+
 /// ClickHouse insert client.
 pub struct ClickHouseClient {
     client: Client,
@@ -52,48 +64,62 @@ impl ClickHouseClient {
     }
 
     /// Append an ingest log entry (`status`: `ok`, `failed`, or `skipped`).
-    pub async fn insert_ingest_log(
-        &self,
-        dataset_id: &str,
-        s3_key: &str,
-        s3_row_count: u64,
-        row_count: u64,
-        status: &str,
-        error: Option<&str>,
-    ) -> Result<()> {
+    pub async fn insert_ingest_log(&self, entry: IngestLogEntry<'_>) -> Result<()> {
         let line = serde_json::to_string(&json!({
-            "dataset_id": dataset_id,
-            "s3_key": s3_key,
-            "s3_row_count": s3_row_count,
-            "row_count": row_count,
-            "status": status,
-            "error": error,
+            "dataset_id": entry.dataset_id,
+            "s3_key": entry.s3_key,
+            "s3_row_count": entry.s3_row_count,
+            "row_count": entry.row_count,
+            "status": entry.status,
+            "error": entry.error,
+            "last_data_change": entry.last_data_change,
         }))
         .map_err(|e| Error::ClickHouse(e.to_string()))?;
         self.insert_json_each_row("ingest_log", &line).await
     }
 
-    /// Returns true when a successful ingest exists for the dataset with matching row count.
-    pub async fn is_ingested_with_row_count(
+    /// Returns true when a successful ingest already covers this S3 snapshot.
+    ///
+    /// Prefer matching both `s3_row_count` and inventory `last_data_change` so
+    /// value-only Eurostat revisions (same row count) still re-ingest after S3 refresh.
+    /// When `last_data_change` is unknown, fall back to row-count matching.
+    pub async fn is_ingested_current(
         &self,
         dataset_id: &str,
         s3_row_count: u64,
+        last_data_change: Option<&str>,
     ) -> Result<bool> {
-        if s3_row_count == 0 {
+        if s3_row_count == 0 && last_data_change.is_none() {
             return self.is_ingested(dataset_id).await;
         }
-        let count: u64 = self
-            .client
-            .query(&format!(
-                "SELECT count() FROM {db}.ingest_log \
-                 WHERE dataset_id = ? AND status = 'ok' AND s3_row_count = ?",
-                db = self.database
-            ))
-            .bind(dataset_id)
-            .bind(s3_row_count)
-            .fetch_one()
-            .await
-            .map_err(|e| Error::ClickHouse(e.to_string()))?;
+
+        let count: u64 = if let Some(stamp) = last_data_change {
+            self.client
+                .query(&format!(
+                    "SELECT count() FROM {db}.ingest_log \
+                     WHERE dataset_id = ? AND status = 'ok' \
+                       AND s3_row_count = ? AND last_data_change = ?",
+                    db = self.database
+                ))
+                .bind(dataset_id)
+                .bind(s3_row_count)
+                .bind(stamp)
+                .fetch_one()
+                .await
+                .map_err(|e| Error::ClickHouse(e.to_string()))?
+        } else {
+            self.client
+                .query(&format!(
+                    "SELECT count() FROM {db}.ingest_log \
+                     WHERE dataset_id = ? AND status = 'ok' AND s3_row_count = ?",
+                    db = self.database
+                ))
+                .bind(dataset_id)
+                .bind(s3_row_count)
+                .fetch_one()
+                .await
+                .map_err(|e| Error::ClickHouse(e.to_string()))?
+        };
         Ok(count > 0)
     }
 
