@@ -21,6 +21,9 @@ pub struct ManifestEntry {
     pub path: Option<String>,
     pub rows: Option<usize>,
     pub error: Option<String>,
+    /// Eurostat inventory change stamp mirrored into this object (when known).
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub last_data_change: Option<String>,
 }
 
 /// Summarize manifest state.

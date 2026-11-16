@@ -34,14 +34,14 @@ impl<'a> SearchEngine<'a> {
             return Ok(Vec::new());
         }
 
-        let mut results = self.cache.search(&fts_query, limit as i64).await?;
+        let results = self.cache.search(&fts_query, limit as i64).await?;
 
         #[cfg(feature = "fuzzy-search")]
-        {
-            if results.is_empty() {
-                results = self.fuzzy_fallback(query, limit).await?;
-            }
-        }
+        let results = if results.is_empty() {
+            self.fuzzy_fallback(query, limit).await?
+        } else {
+            results
+        };
 
         Ok(results)
     }

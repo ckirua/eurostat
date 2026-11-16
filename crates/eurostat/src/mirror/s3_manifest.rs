@@ -129,6 +129,7 @@ mod tests {
                 path: Some("datasets/nama/nama_10_gdp.parquet.zstd".into()),
                 rows: Some(100),
                 error: None,
+                last_data_change: None,
             },
             ManifestEntry {
                 source: "dissemination".into(),
@@ -138,6 +139,7 @@ mod tests {
                 path: None,
                 rows: None,
                 error: Some("parse error".into()),
+                last_data_change: None,
             },
         ];
         let body = entries_to_jsonl(&entries).expect("serialize");

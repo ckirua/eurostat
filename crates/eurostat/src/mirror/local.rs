@@ -94,6 +94,7 @@ async fn convert_file(
             path: Some(output.display().to_string()),
             rows: None,
             error: None,
+            last_data_change: file.last_data_change.clone(),
         };
     }
 
@@ -107,6 +108,7 @@ async fn convert_file(
                 path: Some(output.display().to_string()),
                 rows: Some(rows),
                 error: None,
+                last_data_change: file.last_data_change.clone(),
             };
             if let Err(err) = append_manifest(config, &entry) {
                 warn!(%err, "failed to append manifest");
@@ -127,6 +129,7 @@ async fn convert_file(
                 path: None,
                 rows: None,
                 error: Some(err.to_string()),
+                last_data_change: file.last_data_change.clone(),
             };
             let _ = append_manifest(config, &entry);
             entry
@@ -140,6 +143,7 @@ async fn convert_file(
                 path: None,
                 rows: None,
                 error: Some(err.to_string()),
+                last_data_change: file.last_data_change.clone(),
             };
             let _ = append_manifest(config, &entry);
             entry
