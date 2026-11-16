@@ -78,7 +78,7 @@ impl<'a> SdmxClient<'a> {
             SdmxVersion::V3_0 => "sdmx/3.0",
         };
 
-        let mut url = format!(
+        let url = format!(
             "{}/{}/data/{}/{}",
             self.base_url_for(dataset_id),
             version_path,

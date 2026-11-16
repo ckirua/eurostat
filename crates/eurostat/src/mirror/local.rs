@@ -36,7 +36,7 @@ pub async fn run_mirror(
 
     let config = config.clone();
     let client = client.clone();
-    let results = stream::iter(limited.into_iter())
+    let results = stream::iter(limited)
         .map(|file| {
             let client = client.clone();
             let config = config.clone();
@@ -111,6 +111,24 @@ async fn convert_file(
             if let Err(err) = append_manifest(config, &entry) {
                 warn!(%err, "failed to append manifest");
             }
+            entry
+        }
+        Err(err) if err.is_temporarily_unavailable() => {
+            warn!(
+                dataset_id = %file.dataset_id,
+                %err,
+                "dataset temporarily unavailable; skipping"
+            );
+            let entry = ManifestEntry {
+                source: source.to_string(),
+                dataset_id: file.dataset_id.clone(),
+                url: file.url.clone(),
+                status: "skipped".to_string(),
+                path: None,
+                rows: None,
+                error: Some(err.to_string()),
+            };
+            let _ = append_manifest(config, &entry);
             entry
         }
         Err(err) => {

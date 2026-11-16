@@ -167,13 +167,17 @@ fn parse_inventory_tsv(text: &str) -> Result<Vec<BulkFile>> {
                     continue;
                 }
             }
-            let url = csv_idx
+            // Prefer TSV: SDMX-CSV for large datasets often decompresses to multi-GB
+            // (e.g. FATS_G1A_08 ~2.4GiB) while TSV stays hundreds of MB. Force
+            // `compressed=true` so the wire payload is gzip even when the inventory
+            // URL omits it.
+            let url = tsv_idx
                 .and_then(|idx| parts.get(idx).copied())
-                .or_else(|| tsv_idx.and_then(|idx| parts.get(idx).copied()))
+                .or_else(|| csv_idx.and_then(|idx| parts.get(idx).copied()))
                 .map(str::trim)
                 .filter(|url| url.starts_with("http"))
-                .unwrap_or_default()
-                .to_string();
+                .map(with_compressed_true)
+                .unwrap_or_default();
             if url.is_empty() {
                 continue;
             }
@@ -215,6 +219,18 @@ fn classify_bulk_url(url: &str) -> String {
         "tsv".to_string()
     } else {
         "unknown".to_string()
+    }
+}
+
+/// Ensure Eurostat bulk download URLs request a gzip body.
+fn with_compressed_true(url: &str) -> String {
+    if url.to_ascii_lowercase().contains("compressed=") {
+        return url.to_string();
+    }
+    if url.contains('?') {
+        format!("{url}&compressed=true")
+    } else {
+        format!("{url}?compressed=true")
     }
 }
 
@@ -276,7 +292,22 @@ FOLDER\tFOLDER\t-\t-\t-\t-\t-\n";
         let files = parse_inventory_tsv(tsv).expect("parse");
         assert_eq!(files.len(), 1);
         assert_eq!(files[0].dataset_id, "nama_10_gdp");
-        assert_eq!(files[0].format, "sdmx-csv");
+        assert_eq!(files[0].format, "tsv");
+        assert!(files[0].url.contains("format=TSV"));
+        assert!(files[0].url.contains("compressed=true"));
+        assert!(!files[0].url.contains("SDMX-CSV"));
+    }
+
+    #[test]
+    fn with_compressed_true_is_idempotent() {
+        assert_eq!(
+            with_compressed_true("https://x/?format=TSV&compressed=true"),
+            "https://x/?format=TSV&compressed=true"
+        );
+        assert_eq!(
+            with_compressed_true("https://x/?format=TSV"),
+            "https://x/?format=TSV&compressed=true"
+        );
     }
 
     #[test]

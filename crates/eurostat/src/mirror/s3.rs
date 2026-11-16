@@ -58,16 +58,18 @@ impl S3Config {
     /// `S3_EUROSTAT_SECRET_KEY`
     pub fn from_env() -> Result<Self> {
         let bucket = env_first(&["S3_EUROSTAT_BUCKET"]).unwrap_or_else(|| "eurostat".to_string());
-        let endpoint = env_first(&["S3_EUROSTAT_ENDPOINT", "S3_URL"]).ok_or_else(|| {
-            Error::Config("S3_URL (or S3_EUROSTAT_ENDPOINT) is not set".into())
-        })?;
-        let region = env_first(&["S3_EUROSTAT_REGION", "S3_REGION"]).unwrap_or_else(|| "fsn1".to_string());
-        let access_key = env_first(&["S3_EUROSTAT_ACCESS_KEY", "S3_ACCESS_KEY"]).ok_or_else(|| {
-            Error::Config("S3_ACCESS_KEY (or S3_EUROSTAT_ACCESS_KEY) is not set".into())
-        })?;
-        let secret_key = env_first(&["S3_EUROSTAT_SECRET_KEY", "S3_SECRET_KEY"]).ok_or_else(|| {
-            Error::Config("S3_SECRET_KEY (or S3_EUROSTAT_SECRET_KEY) is not set".into())
-        })?;
+        let endpoint = env_first(&["S3_EUROSTAT_ENDPOINT", "S3_URL"])
+            .ok_or_else(|| Error::Config("S3_URL (or S3_EUROSTAT_ENDPOINT) is not set".into()))?;
+        let region =
+            env_first(&["S3_EUROSTAT_REGION", "S3_REGION"]).unwrap_or_else(|| "fsn1".to_string());
+        let access_key =
+            env_first(&["S3_EUROSTAT_ACCESS_KEY", "S3_ACCESS_KEY"]).ok_or_else(|| {
+                Error::Config("S3_ACCESS_KEY (or S3_EUROSTAT_ACCESS_KEY) is not set".into())
+            })?;
+        let secret_key =
+            env_first(&["S3_EUROSTAT_SECRET_KEY", "S3_SECRET_KEY"]).ok_or_else(|| {
+                Error::Config("S3_SECRET_KEY (or S3_EUROSTAT_SECRET_KEY) is not set".into())
+            })?;
         Ok(Self {
             bucket,
             endpoint: endpoint.trim_end_matches('/').to_string(),
@@ -115,7 +117,7 @@ pub async fn run_s3_mirror(
     let client = client.clone();
     let s3 = Arc::new(s3.clone());
     let manifest = Arc::new(S3ManifestWriter::new(s3.clone()));
-    let results = stream::iter(limited.into_iter())
+    let results = stream::iter(limited)
         .map(|file| {
             let client = client.clone();
             let s3 = s3.clone();
@@ -226,6 +228,15 @@ async fn upload_file(
                     base("failed", None, Some(err.to_string()))
                 }
             }
+        }
+        Err(err) if err.is_temporarily_unavailable() => {
+            warn!(
+                dataset_id = %file.dataset_id,
+                %key,
+                %err,
+                "dataset temporarily unavailable; skipping"
+            );
+            base("skipped", None, Some(err.to_string()))
         }
         Err(err) => {
             warn!(dataset_id = %file.dataset_id, %key, %err, "conversion failed");

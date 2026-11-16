@@ -7,11 +7,11 @@ use flate2::read::GzDecoder;
 
 use crate::api::export::{export_columns_parquet_zstd_bytes, export_parquet_zstd_bytes};
 use crate::client::EurostatClient;
+use crate::config::sanitize_dataset_id;
 use crate::error::{Error, Result};
 use crate::model::BulkFile;
 use crate::parse::comext_csv::parse_comext_csv;
 use crate::parse::sdmx_csv::parse_sdmx_csv_table;
-use crate::config::sanitize_dataset_id;
 use crate::parse::tsv::parse_tsv;
 
 /// Fetch and convert a bulk file into ZSTD parquet bytes (no local dataset dir required).

@@ -16,12 +16,14 @@ use super::config::ClickHouseConfig;
 use super::parquet::fetch_s3_parquet_dataset;
 
 /// Default pilot / hero datasets for smoke testing.
+/// Hero datasets for `--featured` / catalogue flags.
+/// IDs must match S3 object stems (Eurostat inventory uses uppercase).
 pub const FEATURED_DATASETS: &[&str] = &[
-    "nama_10_gdp",
-    "prc_hicp_manr",
-    "une_rt_m",
-    "demo_pjan",
-    "bop_c6_q",
+    "NAMA_10_GDP",
+    "PRC_HICP_MANR",
+    "UNE_RT_M",
+    "DEMO_PJAN",
+    "BOP_C6_Q",
 ];
 
 /// Dataset candidate from the S3 manifest.
@@ -213,16 +215,16 @@ fn parse_manifest_ok_entries(content: &str) -> Vec<ManifestDataset> {
 
     let mut datasets: Vec<ManifestDataset> = latest
         .into_values()
-        .filter_map(|entry| {
+        .map(|entry| {
             let s3_key = entry
                 .path
                 .clone()
                 .unwrap_or_else(|| s3_object_key(&entry.dataset_id, "dissemination"));
-            Some(ManifestDataset {
+            ManifestDataset {
                 dataset_id: entry.dataset_id,
                 s3_key,
                 row_count: entry.rows.unwrap_or(0) as u64,
-            })
+            }
         })
         .collect();
     datasets.sort_by(|a, b| a.dataset_id.cmp(&b.dataset_id));

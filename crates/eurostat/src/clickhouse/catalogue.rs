@@ -109,10 +109,7 @@ async fn dataset_info(config: &Config, dataset_id: &str) -> Result<DatasetInfo> 
 
 fn is_metadata_column(name: &str) -> bool {
     let lower = name.trim().to_ascii_lowercase();
-    matches!(
-        lower.as_str(),
-        "value" | "values" | "obs_value" | "status"
-    )
+    matches!(lower.as_str(), "value" | "values" | "obs_value" | "status")
 }
 
 fn infer_primary_dims(
@@ -132,13 +129,14 @@ fn infer_primary_dims(
         }
     }
 
-    if first_row.is_some() {
-        if primary_geo.is_none() && first_row.and_then(|r| r.geo.as_ref()).is_some() {
-            primary_geo = headers
-                .iter()
-                .find(|h| normalize_column_name(h) == Some("geo"))
-                .cloned();
-        }
+    if first_row.is_some()
+        && primary_geo.is_none()
+        && first_row.and_then(|r| r.geo.as_ref()).is_some()
+    {
+        primary_geo = headers
+            .iter()
+            .find(|h| normalize_column_name(h) == Some("geo"))
+            .cloned();
     }
 
     let _ = first_row;

@@ -57,7 +57,9 @@ pub async fn load_codelists(
         );
     }
     if !codelist_lines.is_empty() {
-        client.insert_json_lines("codelists", &codelist_lines).await?;
+        client
+            .insert_json_lines("codelists", &codelist_lines)
+            .await?;
         status.codelists = codelist_lines.len();
     }
 
@@ -70,12 +72,12 @@ pub async fn load_codelists(
             .get(&inv.latest_tsv_url)
             .send()
             .await
-            .map_err(|e| Error::Http(e))?
+            .map_err(Error::Http)?
             .error_for_status()
-            .map_err(|e| Error::Http(e))?
+            .map_err(Error::Http)?
             .bytes()
             .await
-            .map_err(|e| Error::Http(e))?;
+            .map_err(Error::Http)?;
 
         let decoded = decode_codelist_bytes(&bytes)?;
         let codes = parse_codelist_tsv(&decoded)?;
@@ -104,7 +106,10 @@ pub async fn load_codelists(
 
 async fn reload_dictionaries(client: &ClickHouseClient) -> Result<()> {
     for dict in ["dict_geo_labels", "dict_unit_labels"] {
-        if let Err(err) = client.execute_sql(&format!("SYSTEM RELOAD DICTIONARY {dict}")).await {
+        if let Err(err) = client
+            .execute_sql(&format!("SYSTEM RELOAD DICTIONARY {dict}"))
+            .await
+        {
             tracing::warn!(%dict, %err, "dictionary reload failed (may need auth fix in 002_schema.sql)");
         }
     }
@@ -130,13 +135,13 @@ struct CatalogueEntry {
 
 struct InventoryEntry {
     id: String,
+    #[allow(dead_code)]
     label: String,
     latest_tsv_url: String,
 }
 
 fn parse_catalogue_tsv(path: &Path) -> Result<Vec<CatalogueEntry>> {
-    let text = std::fs::read_to_string(path)
-        .map_err(|e| Error::Io(e))?;
+    let text = std::fs::read_to_string(path).map_err(Error::Io)?;
     let mut entries = Vec::new();
     for (idx, line) in text.lines().enumerate() {
         if idx == 0 || line.trim().is_empty() {
@@ -157,8 +162,7 @@ fn parse_catalogue_tsv(path: &Path) -> Result<Vec<CatalogueEntry>> {
 }
 
 fn parse_inventory_tsv(path: &Path) -> Result<Vec<InventoryEntry>> {
-    let text = std::fs::read_to_string(path)
-        .map_err(|e| Error::Io(e))?;
+    let text = std::fs::read_to_string(path).map_err(Error::Io)?;
     let mut entries = Vec::new();
     for line in text.lines() {
         if line.trim().is_empty() {

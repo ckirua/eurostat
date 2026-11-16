@@ -12,6 +12,14 @@ pub enum Error {
     #[error("HTTP error: {0}")]
     Http(#[from] reqwest::Error),
 
+    /// Failed while reading or decoding an HTTP response body (often truncated gzip).
+    #[error("HTTP body error (status {status}, content-type {content_type}): {message}")]
+    HttpBody {
+        status: u16,
+        content_type: String,
+        message: String,
+    },
+
     /// JSON serialization or deserialization failed.
     #[error("JSON error: {0}")]
     Json(#[from] serde_json::Error),
@@ -90,4 +98,19 @@ impl Error {
             message: message.into(),
         }
     }
+
+    /// Eurostat SOAP/`401` fault for datasets that are temporarily unpublished.
+    pub fn is_temporarily_unavailable(&self) -> bool {
+        match self {
+            Self::Api { message, .. } => message_indicates_unavailable(message),
+            Self::HttpBody { message, .. } => message_indicates_unavailable(message),
+            Self::Http(err) => message_indicates_unavailable(&err.to_string()),
+            _ => message_indicates_unavailable(&self.to_string()),
+        }
+    }
+}
+
+fn message_indicates_unavailable(message: &str) -> bool {
+    let upper = message.to_ascii_uppercase();
+    upper.contains("NOT_AVAILABLE") || upper.contains("TEMPORARILY UNAVAILABLE")
 }

@@ -57,9 +57,10 @@ impl Default for Config {
             base_url: DEFAULT_BASE_URL.to_string(),
             comext_base_url: DEFAULT_COMEXT_BASE_URL.to_string(),
             bulk_index_url: DEFAULT_BULK_INDEX_URL.to_string(),
-            timeout_secs: 120,
-            max_retries: 3,
-            retry_backoff_ms: 500,
+            // Large SDMX bulk files (100MB+ gzip) routinely exceed 2 minutes under load.
+            timeout_secs: 600,
+            max_retries: 5,
+            retry_backoff_ms: 750,
             user_agent: DEFAULT_USER_AGENT.to_string(),
             language: "EN".to_string(),
             cache_dir: default_cache_dir(),
