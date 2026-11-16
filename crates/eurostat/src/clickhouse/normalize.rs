@@ -41,6 +41,7 @@ pub fn normalize_column_name(name: &str) -> Option<&'static str> {
 }
 
 /// Whether a column is a fixed fact column (not a dimension).
+#[allow(dead_code)]
 pub fn is_fact_column(name: &str) -> bool {
     let lower = name.trim().to_ascii_lowercase();
     matches!(lower.as_str(), "value" | "obs_value" | "status")

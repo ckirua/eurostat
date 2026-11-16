@@ -36,7 +36,7 @@ pub async fn fetch_s3_parquet_dataset(
 pub fn parse_parquet_bytes(dataset_id: &str, bytes: &[u8]) -> Result<ParquetDataset> {
     let reader = ParquetRecordBatchReaderBuilder::try_new(Bytes::copy_from_slice(bytes))?
         .build()
-        .map_err(|e| Error::Parquet(e))?;
+        .map_err(Error::Parquet)?;
 
     let mut headers: Option<Vec<String>> = None;
     let mut rows = Vec::new();

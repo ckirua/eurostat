@@ -117,7 +117,7 @@ pub async fn run_s3_mirror(
     let client = client.clone();
     let s3 = Arc::new(s3.clone());
     let manifest = Arc::new(S3ManifestWriter::new(s3.clone()));
-    let results = stream::iter(limited.into_iter())
+    let results = stream::iter(limited)
         .map(|file| {
             let client = client.clone();
             let s3 = s3.clone();

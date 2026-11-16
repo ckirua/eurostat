@@ -36,7 +36,7 @@ pub async fn run_mirror(
 
     let config = config.clone();
     let client = client.clone();
-    let results = stream::iter(limited.into_iter())
+    let results = stream::iter(limited)
         .map(|file| {
             let client = client.clone();
             let config = config.clone();

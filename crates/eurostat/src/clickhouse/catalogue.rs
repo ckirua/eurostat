@@ -129,13 +129,14 @@ fn infer_primary_dims(
         }
     }
 
-    if first_row.is_some() {
-        if primary_geo.is_none() && first_row.and_then(|r| r.geo.as_ref()).is_some() {
-            primary_geo = headers
-                .iter()
-                .find(|h| normalize_column_name(h) == Some("geo"))
-                .cloned();
-        }
+    if first_row.is_some()
+        && primary_geo.is_none()
+        && first_row.and_then(|r| r.geo.as_ref()).is_some()
+    {
+        primary_geo = headers
+            .iter()
+            .find(|h| normalize_column_name(h) == Some("geo"))
+            .cloned();
     }
 
     let _ = first_row;

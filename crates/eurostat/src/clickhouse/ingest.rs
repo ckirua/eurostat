@@ -215,16 +215,16 @@ fn parse_manifest_ok_entries(content: &str) -> Vec<ManifestDataset> {
 
     let mut datasets: Vec<ManifestDataset> = latest
         .into_values()
-        .filter_map(|entry| {
+        .map(|entry| {
             let s3_key = entry
                 .path
                 .clone()
                 .unwrap_or_else(|| s3_object_key(&entry.dataset_id, "dissemination"));
-            Some(ManifestDataset {
+            ManifestDataset {
                 dataset_id: entry.dataset_id,
                 s3_key,
                 row_count: entry.rows.unwrap_or(0) as u64,
-            })
+            }
         })
         .collect();
     datasets.sort_by(|a, b| a.dataset_id.cmp(&b.dataset_id));

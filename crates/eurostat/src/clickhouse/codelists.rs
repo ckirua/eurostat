@@ -72,12 +72,12 @@ pub async fn load_codelists(
             .get(&inv.latest_tsv_url)
             .send()
             .await
-            .map_err(|e| Error::Http(e))?
+            .map_err(Error::Http)?
             .error_for_status()
-            .map_err(|e| Error::Http(e))?
+            .map_err(Error::Http)?
             .bytes()
             .await
-            .map_err(|e| Error::Http(e))?;
+            .map_err(Error::Http)?;
 
         let decoded = decode_codelist_bytes(&bytes)?;
         let codes = parse_codelist_tsv(&decoded)?;
@@ -135,12 +135,13 @@ struct CatalogueEntry {
 
 struct InventoryEntry {
     id: String,
+    #[allow(dead_code)]
     label: String,
     latest_tsv_url: String,
 }
 
 fn parse_catalogue_tsv(path: &Path) -> Result<Vec<CatalogueEntry>> {
-    let text = std::fs::read_to_string(path).map_err(|e| Error::Io(e))?;
+    let text = std::fs::read_to_string(path).map_err(Error::Io)?;
     let mut entries = Vec::new();
     for (idx, line) in text.lines().enumerate() {
         if idx == 0 || line.trim().is_empty() {
@@ -161,7 +162,7 @@ fn parse_catalogue_tsv(path: &Path) -> Result<Vec<CatalogueEntry>> {
 }
 
 fn parse_inventory_tsv(path: &Path) -> Result<Vec<InventoryEntry>> {
-    let text = std::fs::read_to_string(path).map_err(|e| Error::Io(e))?;
+    let text = std::fs::read_to_string(path).map_err(Error::Io)?;
     let mut entries = Vec::new();
     for line in text.lines() {
         if line.trim().is_empty() {
