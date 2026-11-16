@@ -1,8 +1,8 @@
 //! Read ZSTD parquet bytes from S3 and normalize into observation rows.
 
-use bytes::Bytes;
 use arrow::array::{Array, Float64Array, StringArray};
 use arrow::datatypes::DataType;
+use bytes::Bytes;
 use parquet::arrow::arrow_reader::ParquetRecordBatchReaderBuilder;
 
 use crate::error::{Error, Result};
@@ -181,7 +181,10 @@ mod tests {
         };
         let bytes = export_parquet_zstd_bytes(&table).expect("export");
         let dataset = parse_parquet_bytes("test_ds", &bytes).expect("parquet");
-        assert_eq!(dataset.rows[0].dimensions.get("indic").map(String::as_str), Some("GDP"));
+        assert_eq!(
+            dataset.rows[0].dimensions.get("indic").map(String::as_str),
+            Some("GDP")
+        );
     }
 
     #[test]

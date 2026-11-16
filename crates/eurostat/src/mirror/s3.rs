@@ -58,16 +58,18 @@ impl S3Config {
     /// `S3_EUROSTAT_SECRET_KEY`
     pub fn from_env() -> Result<Self> {
         let bucket = env_first(&["S3_EUROSTAT_BUCKET"]).unwrap_or_else(|| "eurostat".to_string());
-        let endpoint = env_first(&["S3_EUROSTAT_ENDPOINT", "S3_URL"]).ok_or_else(|| {
-            Error::Config("S3_URL (or S3_EUROSTAT_ENDPOINT) is not set".into())
-        })?;
-        let region = env_first(&["S3_EUROSTAT_REGION", "S3_REGION"]).unwrap_or_else(|| "fsn1".to_string());
-        let access_key = env_first(&["S3_EUROSTAT_ACCESS_KEY", "S3_ACCESS_KEY"]).ok_or_else(|| {
-            Error::Config("S3_ACCESS_KEY (or S3_EUROSTAT_ACCESS_KEY) is not set".into())
-        })?;
-        let secret_key = env_first(&["S3_EUROSTAT_SECRET_KEY", "S3_SECRET_KEY"]).ok_or_else(|| {
-            Error::Config("S3_SECRET_KEY (or S3_EUROSTAT_SECRET_KEY) is not set".into())
-        })?;
+        let endpoint = env_first(&["S3_EUROSTAT_ENDPOINT", "S3_URL"])
+            .ok_or_else(|| Error::Config("S3_URL (or S3_EUROSTAT_ENDPOINT) is not set".into()))?;
+        let region =
+            env_first(&["S3_EUROSTAT_REGION", "S3_REGION"]).unwrap_or_else(|| "fsn1".to_string());
+        let access_key =
+            env_first(&["S3_EUROSTAT_ACCESS_KEY", "S3_ACCESS_KEY"]).ok_or_else(|| {
+                Error::Config("S3_ACCESS_KEY (or S3_EUROSTAT_ACCESS_KEY) is not set".into())
+            })?;
+        let secret_key =
+            env_first(&["S3_EUROSTAT_SECRET_KEY", "S3_SECRET_KEY"]).ok_or_else(|| {
+                Error::Config("S3_SECRET_KEY (or S3_EUROSTAT_SECRET_KEY) is not set".into())
+            })?;
         Ok(Self {
             bucket,
             endpoint: endpoint.trim_end_matches('/').to_string(),

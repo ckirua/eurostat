@@ -109,10 +109,7 @@ async fn dataset_info(config: &Config, dataset_id: &str) -> Result<DatasetInfo> 
 
 fn is_metadata_column(name: &str) -> bool {
     let lower = name.trim().to_ascii_lowercase();
-    matches!(
-        lower.as_str(),
-        "value" | "values" | "obs_value" | "status"
-    )
+    matches!(lower.as_str(), "value" | "values" | "obs_value" | "status")
 }
 
 fn infer_primary_dims(

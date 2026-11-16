@@ -60,22 +60,22 @@ pub use api::sdmx;
 pub use api::search;
 pub use api::statistics;
 
+#[cfg(feature = "clickhouse")]
+pub use clickhouse::{
+    fetch_s3_parquet_dataset, load_codelists, parse_parquet_bytes, parse_time_period, run_ingest,
+    ClickHouseClient, ClickHouseConfig, IngestOptions, IngestStatus, LoadCodelistsOptions,
+    LoadCodelistsStatus, ObservationRow, ParquetDataset, DEFAULT_CODELISTS, FEATURED_DATASETS,
+};
 pub use client::EurostatClient;
 pub use config::{Config, DEFAULT_DATA_DIR};
 pub use error::{Error, Result};
-#[cfg(feature = "s3")]
-pub use mirror::{mirror_status_s3, run_s3_mirror, S3Config, S3_MANIFEST_KEY};
 #[cfg(all(feature = "bulk", feature = "export"))]
 pub use mirror::{
     dataset_prefix, mirror_status, run_mirror, s3_object_key, select_files, MirrorOptions,
     MirrorSource, MirrorStatus,
 };
+#[cfg(feature = "s3")]
+pub use mirror::{mirror_status_s3, run_s3_mirror, S3Config, S3_MANIFEST_KEY};
 pub use model::OutputFormat;
-#[cfg(feature = "clickhouse")]
-pub use clickhouse::{
-    fetch_s3_parquet_dataset, load_codelists, parse_parquet_bytes, parse_time_period, run_ingest,
-    ClickHouseClient, ClickHouseConfig, IngestOptions, IngestStatus, LoadCodelistsOptions,
-    LoadCodelistsStatus, ObservationRow, ParquetDataset, FEATURED_DATASETS, DEFAULT_CODELISTS,
-};
 #[cfg(feature = "cache")]
 pub use search::SearchEngine;

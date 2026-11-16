@@ -129,13 +129,13 @@ mod tests {
         assert_eq!(r.time_code.as_deref(), Some("2020"));
         assert_eq!(r.freq.as_deref(), Some("A"));
         assert_eq!(r.unit.as_deref(), Some("EUR"));
-        assert_eq!(r.dimensions.get("na_item").map(String::as_str), Some("B1GQ"));
+        assert_eq!(
+            r.dimensions.get("na_item").map(String::as_str),
+            Some("B1GQ")
+        );
         assert_eq!(r.value, Some(100.5));
         assert_eq!(r.status.as_deref(), Some("e"));
-        assert_eq!(
-            r.time_start,
-            chrono::NaiveDate::from_ymd_opt(2020, 1, 1)
-        );
+        assert_eq!(r.time_start, chrono::NaiveDate::from_ymd_opt(2020, 1, 1));
     }
 
     #[test]
