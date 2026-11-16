@@ -355,7 +355,9 @@ fn parse_inventory_time(raw: &str) -> Option<DateTime<FixedOffset>> {
 
 fn parse_s3_time(raw: &str) -> Option<DateTime<FixedOffset>> {
     let raw = raw.trim();
-    DateTime::parse_from_rfc3339(raw)
+    // rust-s3 typically returns HTTP-date / RFC 2822 (`Mon, 16 Nov 2026 13:14:08 GMT`).
+    DateTime::parse_from_rfc2822(raw)
+        .or_else(|_| DateTime::parse_from_rfc3339(raw))
         .or_else(|_| DateTime::parse_from_str(raw, "%Y-%m-%dT%H:%M:%S%z"))
         .or_else(|_| DateTime::parse_from_str(raw, "%a, %d %b %Y %H:%M:%S GMT"))
         .ok()
@@ -400,6 +402,11 @@ mod tests {
             &Some("2026-11-15T02:00:00+00:00".into()),
             &file
         ));
+        // rust-s3 HEAD uses HTTP-date / RFC 2822.
+        assert!(object_covers_inventory(
+            &Some("Mon, 16 Nov 2026 13:14:08 GMT".into()),
+            &file
+        ));
     }
 
     #[test]
@@ -413,6 +420,10 @@ mod tests {
             &Some("2026-07-13T00:26:19+00:00".into()),
             &file
         ));
+        assert!(!object_covers_inventory(
+            &Some("Sat, 11 Jul 2026 12:06:27 GMT".into()),
+            &file
+        ));
     }
 
     #[test]
@@ -422,5 +433,14 @@ mod tests {
             &Some("2026-07-13T00:26:19+00:00".into()),
             &file
         ));
+    }
+
+    #[test]
+    fn parses_s3_http_date() {
+        let ts = parse_s3_time("Mon, 16 Nov 2026 13:14:08 GMT").expect("http-date");
+        assert_eq!(
+            ts.with_timezone(&Utc).to_rfc3339(),
+            "2026-11-16T13:14:08+00:00"
+        );
     }
 }
