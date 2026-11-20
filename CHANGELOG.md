@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Fixed
+
+- `mirror status --s3` (and local resume) no longer abort when the manifest contains foreign or corrupted lines — such lines are skipped with a warning instead of failing the whole command.
+
 ## 0.1.0 — 2026-07-11
 
 ### Added
